@@ -12,6 +12,12 @@
             $row = $query->row_object();
 
             return $row;
-        }   
+        }  
+        
+        public function insertNewUser($nom,$prenom,$mdp,$mail,$tel)
+        {
+           $sql="insert into User values(null)";
+        }
+        
     }
 ?>
