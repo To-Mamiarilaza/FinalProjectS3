@@ -14,6 +14,20 @@ class FrontOffice_model extends CI_Model
         
     }
 
+    
+
+    public function getNomUser($idUser)
+    { 
+        
+        $sql="select nom from user where  idUser=%d";
+        $sql=sprintf($sql,$idUser);  
+       $query=$this->db->query($sql);
+       $liste=$query->row_array();
+        //var_dump($liste);
+       return $liste['nom'];                                                                                       
+    }
+
+
     public function historique($idObjet)
     {
        $sql="select * from Echange where idObjetEchange=%d";

@@ -26,6 +26,10 @@ class FrontOffice extends CI_Controller {
 
     public function historiser()
     {
+
+        $this->load->model('frontOffice_model','front');
+		$this->front->getNomUser($user);
+
         $this->load->model('frontOffice_model','front');
 		$this->front->historique();
     }
