@@ -16,7 +16,7 @@ create table User(
     prenom VARCHAR(20),
     mdp VARCHAR(20),
     mail VARCHAR(20),
-    tel int
+    tel VARCHAR(20)
 );
 insert into User values(null,"koto","koto","koto","koto@gmail.com",0341234520);
 insert into User values(null,"jenny","jenny","jenny","jenny@gmail.com",0342345312);
