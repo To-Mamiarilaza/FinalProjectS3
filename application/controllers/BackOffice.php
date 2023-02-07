@@ -50,7 +50,7 @@ class BackOffice extends CI_Controller {
 
     public function getNumberUser()
     {
-        
+        //fghj
         $this->load->model('backOffice_model','back');
 		$nombre=$this->back->getNumberUser();
 
@@ -60,6 +60,7 @@ class BackOffice extends CI_Controller {
   
     public function getNumberEchange()
     {
+//ghjk
         $this->load->model('backOffice_model','back');
     	$nombre=$this->back->getNumberEchange();
 
