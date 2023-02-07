@@ -34,6 +34,16 @@
               }
             return $liste;
         }
+        public function demanderEchange($idObjetDemande,$idObjetEchange)
+        {
+           $sql="insert into Echange values (null,%d,%d,0)";
+           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange);
+           try {
+            $this->db->query($sql);
+           } catch (Exception $th) {
+            throw new Exception($th->getMessage());
+           }
+        }
         public function accepterProposition($idProposition)
         {
             try {
