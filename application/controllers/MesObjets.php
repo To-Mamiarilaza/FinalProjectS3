@@ -31,13 +31,13 @@ class MesObjets extends CI_Controller {
     public function accepter($idProp)
     {
         $this->load->model('echange_model','objet');
-		$this->objet->accepterProposition(3);
+		$this->objet->accepterProposition(8);
     }
 
     public function refuser($idProp)
     {
         $this->load->model('echange_model','objet');
-		$this->objet->refuserProposition(3);
+		$this->objet->refuserProposition(6);
     }
 }
 
