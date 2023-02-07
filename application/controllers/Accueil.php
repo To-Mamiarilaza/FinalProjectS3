@@ -11,6 +11,12 @@ class Accueil extends CI_Controller {
         echo ("Bonjour " . $nom);
         $this->load->view('template', $data);
     }
+
+    public function supprimer($idCat)
+    {
+        $this->load->model('BackOffice','back');
+		$this->back->supprimerCategorie(3);
+    }
 }
 
 ?>
