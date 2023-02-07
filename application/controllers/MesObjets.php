@@ -6,7 +6,7 @@ class MesObjets extends CI_Controller {
     public function getUser($idUser)
     {
         $this->load->model('objets_model','objet');
-		$this->objet->getUserObjet(5);
+		$this->objet->getUserObjet(2);
     }
 
     public function supprimerCat($idCat)
