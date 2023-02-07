@@ -15,6 +15,13 @@ class MesObjets extends CI_Controller {
 		$this->objet->supprimerObjet(2);
     }
 
+
+    public function getAllObj()
+    {
+        $this->load->model('echange_model','objet');
+		$this->objet->getAllObjet();
+    }
+
     public function getUserObj($idUser)
     {
         $this->load->model('echange_model','objet');
