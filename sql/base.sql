@@ -78,7 +78,6 @@ insert into Echange values(null,3,1,1,"2020-10-23 09:23:00",null,4,3);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,4);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,1);
 
-update echange set dateHeureAccepte=NOW() WHERE idEchange=5;
 
 
-create or replace view  EchangeDetail as select e.idEchange,e.idObjetDemande,e.idObjetEchange,e.etatechange,(obj.idUser) as idRecepteur,(ob.idUser) as idEnvoyeur from echange e join objet obj on e.idObjetDemande=obj.idObjet join objet ob on e.idObjetEchange=ob.idObjet;
+select o.idObjet,o.idCategorie,o.idUser,o.nom,o.description,o.prix from objet o join User u on o.idUser=u.idUser;
