@@ -27,16 +27,23 @@
                     </h2>
                 </a>
             </div>
-            <form action="<?php echo site_url("login/checkLogin"); ?>" method="POST" class="col-md-12 champs form mt-3">
+            <form action="<?php echo site_url("login/insertNewClient"); ?>" method="POST" class="col-md-12 champs form mt-3">
                 <div>
-                    <i class="fas fa-user"></i><input type="text" name="nom" class="form-control" placeholder="Entrer votre username">
+                    <i class="fas fa-user"></i><input type="text" name="nom" class="form-control" placeholder="Entrer votre nom">
+                </div>
+                <div class="mt-3">
+                    <i class="fas fa-user"></i><input type="text" name="prenom" class="form-control" placeholder="Entrer votre prenom">
+                </div>
+                <div class="mt-3">
+                    <i class="fas fa-phone"></i><input type="text" name="tel" class="form-control" placeholder="Entrer votre numero telephone">
+                </div>
+                <div class="mt-3">
+                    <i class="fab fa-google"></i><input type="email" name="mail" class="form-control" placeholder="Entrer votre adresse mail">
                 </div>
                 <div class="mt-3">
                     <i class="fas fa-lock"></i><input type="password" name="mdp" class="form-control" placeholder="Entrer votre mot de passe">
                 </div>
-                <div class="mt-3">
-                    <i class="fas fa-lock"></i><input type="password" name="mdp" class="form-control" placeholder="Confirmer votre mot de passe">
-                </div>
+                <?php if(isset($erreur)) { ?><div class="erreur"> <?php echo $erreur; ?> </div> <?php } ?>
                 <button type="submit" class="btn btn-success connexion mt-4">Inscription</button>
             </form>
         </div>
