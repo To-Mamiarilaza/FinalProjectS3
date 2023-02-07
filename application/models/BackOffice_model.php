@@ -13,6 +13,14 @@
             return $liste;
         } 
 
+        public function getCategorie($idCategorie){
+            $sql = "SELECT * FROM Categorie WHERE idCategorie = %d";
+            $sql = sprintf($sql, $idCategorie);
+            $query= $this->db->query($sql);
+            $liste= $query->row_array();
+            return $liste;
+        } 
+
         public function insertNewCategorie ($new)
         {
            $sql="insert into Categorie values (null,%s)";

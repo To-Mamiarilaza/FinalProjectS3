@@ -52,5 +52,21 @@ class Echange extends CI_Controller {
         $this->load->view('template', $data);
     }		
 
+    public function detailOtherObjet($idObjet)
+    {
+        $this->load->model("objets_model", 'model');
+        $this->load->model("backOffice_model", "backoffice");
+
+        $objet = $this->model->getObjet($idObjet);
+        $data['content'] = "detailOtherObjet";
+        $data['header'] = "header";
+        $data['title'] = "Detail de l'objet";
+        $data['objet'] = $objet;
+        $data['proprietaire'] = $this->model->getUserOb($idObjet);
+        $data['categorie'] = $this->backoffice->getCategorie($data['objet']['idCategorie'])['nom'];
+        $data['photos'] = $this->model->getPhoto($objet['idObjet']);
+
+        $this->load->view("template", $data);
+    }
 	
 }
