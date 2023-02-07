@@ -9,6 +9,10 @@
             <input type="text" name="nom" class="form-control" id="exampleFormControlInput1" placeholder="Entrer le nom ici">
         </div>
         <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Prix de l'objet</label>
+            <input type="text" name="prix" class="form-control" id="exampleFormControlInput1" placeholder="Entrer le prix ici">
+        </div>
+        <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Categorie</label>
             <select name="idCategorie" id="" class="form-select">
                 <?php foreach ($categories as $categorie) { ?>

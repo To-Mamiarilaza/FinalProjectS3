@@ -1,3 +1,4 @@
+<?php var_dump($histo); ?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/"); ?>">
 <div class="container">
     <center>

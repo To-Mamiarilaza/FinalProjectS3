@@ -67,11 +67,12 @@ class MesObjets extends CI_Controller {
         $this->load->model('objets_model', 'model');
 
         $nom = $this->input->post('nom');
+        $prix = $this->input->post('prix');
         $idCategorie = $this->input->post('idCategorie');
         $description = $this->input->post('description');
         $idUser = $this->session->userdata('userId')->idUser;
 
-        $this->model->insertNewObjet($idCategorie, $idUser, $nom, $description);
+        $this->model->insertNewObjet($idCategorie, $idUser, $nom, $description,$prix);
         redirect('./mesObjets/index');
     }
 
