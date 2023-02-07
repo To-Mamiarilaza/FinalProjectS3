@@ -13,6 +13,17 @@
             return $listes;       
         } 
 
+        public function getAllObjet(){
+            $sql = "SELECT * FROM objet";
+            $query = $this->db->query($sql);
+            //echo $query;
+            //$row = $query->row_object();
+            $listes=array();
+            $listes= $query->result_array();
+            echo $sql;
+            return $listes;       
+        } 
+
         public function accepterProposition($idProposition)
         {
             try {
