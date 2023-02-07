@@ -1,0 +1,27 @@
+.container {
+    margin-top: 20px;
+    min-height: 580px;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 400;
+    color: rgb(142 201 142);
+}
+
+hr:not([size]) {
+    height: 2px;
+}
+
+.listes-categories h4 {
+    text-align: center;
+}
+
+
+.creation:hover {
+    background-color: black;
+}
+
+.creation {
+    color: white;
+}
