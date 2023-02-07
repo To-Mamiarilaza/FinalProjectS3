@@ -32,7 +32,13 @@ class FrontOffice extends CI_Controller {
 
         $this->load->model('frontOffice_model','front');
 		$this->front->historique();
+
     }
+    public function voirplus()
+    {
+        $this->load->view('historique');
+    }
+    
     
 }
 
