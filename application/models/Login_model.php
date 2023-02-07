@@ -2,9 +2,21 @@
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Login_model extends CI_Model {
-        public function checkLogin($nom, $mdp)
+        public function checkLoginUser($mail, $mdp)
         {
-            $sql = "SELECT * FROM utilisateur WHERE nom = '%s' and mdp = '%s'";
+            $sql = "SELECT * FROM User WHERE mail = '%s' and mdp = '%s'";
+            $sql = sprintf($sql, $mail, $mdp);
+
+            $query = $this->db->query($sql);
+
+            $row = $query->row_object();
+
+            return $row;
+        }   
+
+        public function checkLoginAdmin($nom, $mdp)
+        {
+            $sql = "SELECT * FROM Admin WHERE nom = '%s' and mdp = '%s'";
             $sql = sprintf($sql, $nom, $mdp);
 
             $query = $this->db->query($sql);

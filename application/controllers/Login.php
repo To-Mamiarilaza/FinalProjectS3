@@ -29,27 +29,48 @@ class Login extends CI_Controller {
 		$this->load->view('loginClient');
 	}		
 
-	public function checkLogin()
+	public function loginAdmin()
+	{
+		$this->load->view('loginAdmin');
+	}
+
+	public function checkLoginUser()
+	{
+		$this->load->model('login_model');
+
+		$mail = $this->input->post('mail');
+		$mdp = $this->input->post('mdp');
+
+		$test = $this->login_model->checkLoginUser($mail, $mdp);
+
+		if ($test == null) {
+			$data['nom'] = $mail;
+			$data['erreur'] = "erreur";
+			$this->load->view('loginClient', $data);
+		}
+		else {
+			$this->session->set_userdata('userId', $test);
+			redirect("./accueil/index");
+		}
+	}
+
+	public function checkLoginAdmin()
 	{
 		$this->load->model('login_model');
 
 		$nom = $this->input->post('nom');
 		$mdp = $this->input->post('mdp');
 
-		$test = $this->login_model->checkLogin($nom, $mdp);
+		$test = $this->login_model->checkLoginAdmin($nom, $mdp);
 
 		if ($test == null) {
 			$data['nom'] = $nom;
 			$data['erreur'] = "erreur";
-			$this->load->view('login', $data);
-		}
-		elseif ($test->profil == 0) {
-			$this->session->set_userdata('userId', $test);
-			redirect("./accueil/index");
+			$this->load->view('loginAdmin', $data);
 		}
 		else {
 			$this->session->set_userdata('userId', $test);
-			redirect("./login/index");
+			redirect("./accueil/index");
 		}
 	}
 }
