@@ -23,7 +23,7 @@
             echo $sql;
             return $listes;       
         } 
-
+        
         public function supprimerObjet($idObjet)
         {
             try {
