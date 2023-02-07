@@ -20,19 +20,21 @@
                         </form>
                     </div>
                 </div>
-                <li class="list-group-item categorie-list">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Livre
+                <?php foreach ($categories as $categorie) { ?>
+                    <li class="list-group-item categorie-list">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <?php echo $categorie['nom']; ?>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateName(<?php echo $categorie['idCategorie']; ?>, '<?php echo $categorie['nom']; ?>')"><i class="far fa-edit icone" ></i></a>
+                            </div>
+                            <div class="offset-md-1 col-md-1">
+                                <a href=""><i class="fas fa-trash icone" ></i></a>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateName(1, 'Livre')"><i class="far fa-edit icone" ></i></a>
-                        </div>
-                        <div class="offset-md-1 col-md-1">
-                            <a href=""><i class="fas fa-trash icone" ></i></a>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                <?php } ?>
             </ul>
 
             <!-- Modal -->
