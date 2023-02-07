@@ -58,7 +58,7 @@
         public function accepterProposition($idProposition)
         {
             try {
-                $sql="UPDATE echange SET EtatEchange=1  WHERE idEchange= %d";
+                $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
                 $sql=sprintf($sql,$this->db->escape($idProposition));
                 $this->db->query($sql);
                 echo $this->db->affected_rows();
