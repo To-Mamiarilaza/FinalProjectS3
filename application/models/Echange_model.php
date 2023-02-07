@@ -33,10 +33,10 @@
               }
             return $liste;
         }
-        public function demanderEchange($idObjetDemande,$idObjetEchange)
+        public function demanderEchange($idObjetDemande,$idObjetEchange,$idRecepteur,$idReceveur)
         {
-           $sql="insert into Echange values (null,%d,%d,0)";
-           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange);
+           $sql="insert into Echange values (null,%d,%d,0,now(),null,%d,%d)";
+           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange,$idRecepteur,$idReceveur);
            try {
             $this->db->query($sql);
            } catch (Exception $th) {
@@ -46,7 +46,7 @@
 
         public function getPropositionRecu($idRecepteur)
         {
-           $sql="select idObjetDemande,idObjetEchange,idEnvoyeur from EchangeDetail where idRecepteur=%d";
+           $sql="select idObjetDemande,idObjetEchange,idEnvoyeur from Echange where idRecepteur=%d";
            $sql=sprintf($sql,$idRecepteur);
            $query = $this->db->query($sql);
            $liste=array();
