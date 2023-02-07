@@ -4,7 +4,7 @@
     {
 
         public function getAllCategories(){
-            $sql = "SELECT * FROM categorie";
+            $sql = "SELECT * FROM Categorie";
             $query=$this->db->query($sql);
             $liste=array();
            foreach($query->result_array() as $row){
