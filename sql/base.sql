@@ -80,4 +80,4 @@ insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,1);
 
 
 
-select o.idObjet,o.idCategorie,o.idUser,o.nom,o.description,o.prix from objet o join User u on o.idUser=u.idUser;
+select * from objet o join User u on o.idUser=u.idUser;
