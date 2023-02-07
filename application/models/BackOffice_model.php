@@ -4,7 +4,13 @@
     {
         public function insertNewCategorie ($new)
         {
-           
+           $sql="insert into Categorie values (null,%s)";
+           $sql=sprintf($sql,$this->db->escape($new));
+           try {
+            $this->db->query($sql);
+           } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+           }
         }        
     }
     
