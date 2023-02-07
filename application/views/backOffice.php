@@ -14,9 +14,9 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                         <p>Nom du nouveau categorie </p>
-                        <form action="" method="post">
+                        <form action="<?php echo site_url('backOffice/newCategorie'); ?>" method="post">
                             <input type="text" name="nom" class="form-control">
-                            <input type="button" value="Ajouter" class="btn btn-success mt-3">
+                            <input type="submit" value="Ajouter" class="btn btn-success mt-3">
                         </form>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                                 <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateName(<?php echo $categorie['idCategorie']; ?>, '<?php echo $categorie['nom']; ?>')"><i class="far fa-edit icone" ></i></a>
                             </div>
                             <div class="offset-md-1 col-md-1">
-                                <a href=""><i class="fas fa-trash icone" ></i></a>
+                                <a href="<?php echo site_url('backOffice/deleteCategorie'); ?>/<?php echo $categorie['idCategorie']; ?>"><i class="fas fa-trash icone" ></i></a>
                             </div>
                         </div>
                     </li>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="modal-body">
                         <p>Modifier le nom du categorie</p>
-                        <form action="" method="post">
+                        <form action="<?php echo site_url('backOffice/updateCategorie'); ?>" method="post">
                             <input type="hidden" name="idCategorie" value="" id="idCategorie">
                             <input type="text" name="nom" class="form-control" value="" id='nomCategorie'>
                             <input type="button" value="Ajouter" class="btn btn-success mt-3">
