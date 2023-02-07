@@ -33,6 +33,14 @@
                 throw new Exception($th->getMessage());
             }
         }
+        public function getUserOb($idObjet)
+        {
+           $sql="select u.idUser,u.nom,u.prenom,u.mail,u.tel from objet o join User u on o.idUser=u.idUser where  o.idObjet=%d";
+           $sql=sprintf($sql,$idObjet);  
+           $query=$this->db->query($sql);
+           $liste=$query->row_array();
+           return $liste;                                                                                       
+        }
         public function supprimerObjet($idObjet)
         {
             try {
