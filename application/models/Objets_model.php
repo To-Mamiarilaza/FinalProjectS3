@@ -64,10 +64,10 @@
         {
             try {
                 $this->db->query("DELETE FROM objet where idObjet='$idObjet'");
-    
+                $this->db->query("DELETE photo FROM photo where idObjet='$idObjet'");
                 } catch (\Throwable $th) {
                     throw $th;
                 }
-        }
+        }      
     }
 ?>
