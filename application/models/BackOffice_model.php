@@ -2,6 +2,18 @@
     if (! defined('BASEPATH')) exit('No direct script access allowed');
     class BackOffice_model extends CI_Model 
     {
+        
+        public function getAllCategories(){
+            $sql = "SELECT * FROM categorie";
+            $query = $this->db->query($sql);
+            //echo $query;
+            //$row = $query->row_object();
+            $listes=array();
+            $listes= $query->result_array();
+            echo $sql;
+            return $listes;       
+        } 
+
         public function insertNewCategorie ($new)
         {
            $sql="insert into Categorie values (null,%s)";
@@ -17,8 +29,8 @@
             try {
             $this->db->query("DELETE FROM categorie where idCategorie='$idCategorie'");
 
-            } catch (\Throwable $th) {
-                throw $th;
+            }catch (Exception $e) {
+                throw new Exception($e->getMessage());
             }
         }  
         public function modifierCategorie($idCategorie,$newCategorie)

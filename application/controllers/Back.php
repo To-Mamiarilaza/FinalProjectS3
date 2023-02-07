@@ -6,8 +6,16 @@ class Back extends CI_Controller {
     public function supprimer($idCat)
     {
         $this->load->model('backOffice_model','back');
-		$this->back->supprimerCategorie(3);
+		$this->back->supprimerCategorie(5);
     }
+
+    
+    public function getAllCat()
+    {
+        $this->load->model('backOffice_model','back');
+		$this->back->getAllCategories();
+    }
+    
 }
 
 ?>
