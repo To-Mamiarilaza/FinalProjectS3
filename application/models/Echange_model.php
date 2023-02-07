@@ -22,7 +22,39 @@
            }
             return $liste;       
         } 
+        public function getObjet($idObjet)
+        {
+            $sql = "SELECT * FROM Objet where idObjet=%d";
+            $sql=sprintf($sql,$idObjet);
+            $query = $this->db->query($sql);
+            $liste=array();
+            foreach($query->result_array() as $row){
+                $liste[]=$row;
+              }
+            return $liste;
+        }
+        public function demanderEchange($idObjetDemande,$idObjetEchange)
+        {
+           $sql="insert into Echange values (null,%d,%d,0)";
+           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange);
+           try {
+            $this->db->query($sql);
+           } catch (Exception $th) {
+            throw new Exception($th->getMessage());
+           }
+        }
 
+        public function getPropositionRecu($idRecepteur)
+        {
+           $sql="select idObjetDemande,idObjetEchange,idEnvoyeur from EchangeDetail where idRecepteur=%d";
+           $sql=sprintf($sql,$idRecepteur);
+           $query = $this->db->query($sql);
+           $liste=array();
+           foreach($query->result_array() as $row){
+            $liste[]=$row;
+          }
+          return $liste;
+        }
         public function accepterProposition($idProposition)
         {
             try {
