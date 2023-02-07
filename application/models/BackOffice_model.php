@@ -20,19 +20,14 @@
            try {
             $this->db->query($sql);
            } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw $e;
            }
         }   
         
         public function supprimerCategorie($idCategorie){
-            try {
-            $this->db->query("DELETE FROM categorie where idCategorie='$idCategorie'");
-
-            }catch (Exception $e) {
-                throw new Exception($e->getMessage());
-            }
-        } 
-         
+            $this->db->query("DELETE FROM Categorie where idCategorie='$idCategorie'");
+        }  
+        
         public function modifierCategorie($idCategorie,$newCategorie)
         {
            $sql="update Categorie set nom= '%s' where idCategorie=%d";
@@ -40,7 +35,7 @@
            try {
            $this->db->query($sql);
            } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw $e;
            }
         }    
     }
