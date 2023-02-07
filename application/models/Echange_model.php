@@ -8,20 +8,19 @@
             //echo $query;
             //$row = $query->row_object();
             $listes=array();
-            $listes= $query->result_array();
+            $listes[]= $query->result_array();
             echo $sql;
             return $listes;       
         } 
 
         public function getAllObjet(){
             $sql = "SELECT * FROM objet";
-            $query = $this->db->query($sql);
-            //echo $query;
-            //$row = $query->row_object();
-            $listes=array();
-            $listes= $query->result_array();
-            echo $sql;
-            return $listes;       
+            $query=$this->db->query($sql);
+            $liste=array();
+           foreach($query->result_array() as $row){
+             $liste[]=$row;
+           }
+            return $liste;       
         } 
         public function getObjet($idObjet)
         {
@@ -64,9 +63,9 @@
                 $this->db->query($sql);
                 echo $this->db->affected_rows();
                 echo $sql;
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
+                } catch (Exception $e) {
+                    throw new Exception($e->getMessage());
+                   }
         }
 
         
@@ -78,9 +77,9 @@
                 $this->db->query($sql);
                 echo $this->db->affected_rows();
                 echo $sql;
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
+                } catch (Exception $e) {
+                    throw new Exception($e->getMessage());
+                   }
         }
     }
 ?>

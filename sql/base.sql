@@ -68,6 +68,8 @@ create table Echange(
 
 insert into Echange values(null,2,1,0);
 insert into Echange values(null,3,2,1);
-insert into Echange values(null,3,1,-1);        
+insert into Echange values(null,3,1,-1);
+insert into Echange values(null,4,1,0);
+
 
 create or replace view  EchangeDetail as select e.idEchange,e.idObjetDemande,e.idObjetEchange,e.etatechange,(obj.idUser) as idRecepteur,(ob.idUser) as idEnvoyeur from echange e join objet obj on e.idObjetDemande=obj.idObjet join objet ob on e.idObjetEchange=ob.idObjet;

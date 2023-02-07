@@ -8,12 +8,70 @@
             <h4>Listes des categories</h4>
 
             <ul class="list-group">
-                <a href="#" class="list-group-item bg-dark creation">Nouveau categorie </a>
-                <li class="list-group-item">Livre <a href=""><i class="fas fa-trash icone" ></i></a></li>
-                <li class="list-group-item">Cuisine <a href=""><i class="fas fa-trash icone" ></i></a></li>
-                <li class="list-group-item">Bricolage <a href=""><i class="fas fa-trash icone" ></i></a></li>
+                <a class="list-group-item bg-dark creation" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Nouveau categorie <i class="fas fa-plus icone"></i> 
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <p>Nom du nouveau categorie </p>
+                        <form action="" method="post">
+                            <input type="text" name="nom" class="form-control">
+                            <input type="button" value="Ajouter" class="btn btn-success mt-3">
+                        </form>
+                    </div>
+                </div>
+                <?php foreach ($categories as $categorie) { ?>
+                    <li class="list-group-item categorie-list">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <?php echo $categorie['nom']; ?>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateName(<?php echo $categorie['idCategorie']; ?>, '<?php echo $categorie['nom']; ?>')"><i class="far fa-edit icone" ></i></a>
+                            </div>
+                            <div class="offset-md-1 col-md-1">
+                                <a href=""><i class="fas fa-trash icone" ></i></a>
+                            </div>
+                        </div>
+                    </li>
+                <?php } ?>
             </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <p>Modifier le nom du categorie</p>
+                        <form action="" method="post">
+                            <input type="hidden" name="idCategorie" value="" id="idCategorie">
+                            <input type="text" name="nom" class="form-control" value="" id='nomCategorie'>
+                            <input type="button" value="Ajouter" class="btn btn-success mt-3">
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
         </div>
         </div>
     </div>
 </div>
+
+<script>
+    function updateName(idCategorie, categorie) {
+        var inputNom = document.getElementById('nomCategorie');
+        inputNom.value = categorie;
+
+        var inputId = document.getElementById('idCategorie');
+        inputId.value = idCategorie;
+    }
+</script>
