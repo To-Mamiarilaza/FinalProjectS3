@@ -12,12 +12,14 @@ class BackOffice extends CI_Controller {
     public function index($erreur = null)
     {
         $this->load->model('backOffice_model', 'model');
-
         $data['content'] = "backOffice";
         $data['header'] = "headerAdmin";
         $data['title'] = "BackOffice page";
         $data['categories'] = $this->model->getAllCategories();
-
+		$nombre1=$this->model->getNumberUser();
+        $nombre2=$this->model->getNumberEchange();
+        $data['nombre1']=$nombre1;
+        $data['nombre2']=$nombre2;
         $this->load->view('template', $data);
     }
 
@@ -48,26 +50,7 @@ class BackOffice extends CI_Controller {
     }
 
 
-    public function getNumberUser()
-    {
-        //fghj
-        $this->load->model('backOffice_model','back');
-		$nombre=$this->back->getNumberUser();
-
-        $this->load->view("backOffice",$nombre);
-
-    }
-  
-    public function getNumberEchange()
-    {
-//ghjk
-        $this->load->model('backOffice_model','back');
-    	$nombre=$this->back->getNumberEchange();
-
-//fghj
-        $this->load->view("backOffice",$nombre);
-    }
-
+   
 
 }
 

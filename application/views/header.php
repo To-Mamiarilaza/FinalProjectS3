@@ -8,16 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 lien-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Board</a>
+          <a class="nav-link" aria-current="page" href="<?php echo site_url("mesObjets/index"); ?>">Mes objets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Conception</a>
+          <a class="nav-link" href="<?php echo site_url("echange/index"); ?>">Voir des objets</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Listes Projet</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Mon compte</a>
+          <a class="nav-link" href="<?php echo site_url("login/deconnectClient"); ?>">Deconnecter</a>
         </li>
       </ul>
     </div>

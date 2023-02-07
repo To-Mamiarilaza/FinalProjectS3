@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="<?php echo base_url("assets/css/detailObjet.css"); ?>">
 <div class="container">
-    <h1>Detail de l'objet : Voiture</h1>
+    <h1>Detail de l'objet : <?php echo $objet['nom']; ?></h1>
 
     <div class="row mt-5">
         <div class="col-md-6">
-            <p>Propriétaire : <?php echo $objet['nom']; ?></p>
+            <p>Propriétaire : <?php echo $proprietaire['nom']; ?></p>
             <form action="<?php echo site_url("/mesObjets/updateObjet"); ?>" method="POST">
                 <input type="hidden" name="idObjet" id="" value="<?php echo $objet['idObjet']; ?>">
                 <input type="hidden" name="idUser" id="" value="<?php echo $objet['idUser']; ?>">
@@ -33,22 +33,26 @@
         <div class="col-md-6 photos">
             <div class="col-md-12">
                 <h4 class="mb-5">Les photos de votre objet</h4>
-                <form action="<?php echo site_url("mesObjets/ajoutPhoto") ?>" method="post" enctype="multipart/form-data" class="ajoutPhoto">
-                    <input type="hidden" name="idObjet" value="<?php echo $objet['idObjet']; ?>">
-                    <label type="button" for="inputTag" class="btn btn-outline-success" ><i class="fas fa-plus-circle"></i> Choisir photo</label>
-                    <input id="inputTag" type="file" name="nouveau" class="file" onchange="updatePath()">
-                    <p class="path" id="path"></p>
-                    <input type="submit" class="btn btn-success mx-5 btn-sm" value="Valider" id="inputTag">
-                </form>
+                <?php if (count($photos) < 4) { ?>
+                    <?php echo form_open_multipart('upload/do_upload');?>
+                        <input type="hidden" name="idObjet" value="<?php echo $objet['idObjet']; ?>">
+                        
+                        <label type="button" for="inputTag" class="btn btn-outline-success" ><i class="fas fa-plus-circle"></i> Choisir photo</label>
+                        <input id="inputTag" type="file" name="userfile" size="20" class="file" onchange="updatePath()">
+                        <p class="path" id="path"></p>
+                        <input type="submit" class="btn btn-success mx-5 btn-sm" value="Valider" id="inputTag">
+    
+                    </form>
+                <?php } ?>
                 <hr>
             </div>
 
             <div class="row album">
-                <div class="col-md-6 img-display mt-3">
-                    <a href="">
-                        <img src="" class="img-thumbnail" alt="">
-                    </a>
-                </div>
+                <?php foreach ($photos as $key => $photo) { ?>
+                    <div class="col-md-6 img-display mt-3">
+                        <img src="<?php echo base_url("/assets/images/objet/".$photo['photo']); ?>" class="img-thumbnail" alt="">
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>

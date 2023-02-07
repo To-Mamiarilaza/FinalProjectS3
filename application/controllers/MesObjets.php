@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MesObjets extends CI_Controller {
+    function __construct()
+	{
+		parent::__construct();
+		$this->load->helper(array('form', 'url'));
+	}
 
     public function index()
     {
@@ -11,7 +16,18 @@ class MesObjets extends CI_Controller {
         $data['header'] = "header";
         $data['title'] = "Mes Objets";
 
-        $data['objets'] = $this->model->getUserObjet($this->session->userdata('userId')->idUser);
+        $objets = $this->model->getUserObjet($this->session->userdata('userId')->idUser);;
+        $data['objets'] = $objets;
+
+        $arrayPhoto = array();
+
+        for ($i=0; $i < count($objets); $i++) { 
+            $listesPhotos = $this->model->getPhoto($objets[$i]['idObjet']);
+            if(count($listesPhotos) != 0) $arrayPhoto[] = $listesPhotos[0]['photo'];
+            else $arrayPhoto[] = "default.jpg";
+        }
+
+        $data['arrayPhoto'] = $arrayPhoto;
 
         $this->load->view('template', $data);
     }
@@ -29,6 +45,7 @@ class MesObjets extends CI_Controller {
         $objet = $this->model->getObjet($idObjet);
         $data['objet'] = $objet;
         $data['proprietaire'] = $this->model->getUserOb($objet['idObjet']);
+        $data['photos'] = $this->model->getPhoto($objet['idObjet']);
 
         $this->load->view('template', $data);
     }
@@ -81,13 +98,6 @@ class MesObjets extends CI_Controller {
         redirect("./mesObjets/index");
     }
 
-    public function ajoutPhoto()
-    {
-        $idObjet = $this->input->post("idObjet");
-
-        $this->load->model("objets_model", "model");
-    }
-        
     public function supprObjet($idObjet)
     {
         $this->load->model('objets_model','obj');
