@@ -28,7 +28,13 @@
         
         public function insertNewUser($nom,$prenom,$mdp,$mail,$tel)
         {
-           $sql="insert into User values(null)";
+           $sql="insert into User values(null,'%s','%s','%s','%s','%s')";
+           $sql=sprintf($sql,$nom,$prenom,$mdp,$mail,$tel);
+           try {
+           $this->db->query($sql);
+           } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+           }
         }
         
     }
