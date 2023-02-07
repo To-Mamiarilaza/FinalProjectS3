@@ -1,9 +1,11 @@
 .menu {
     padding: .5% 10%;
+    background-color: #ececec;
+
 }
 
 .green-style {
-    color: rgb(110, 201, 110, 0.72);
+    color: rgb(142 201 142);
 }
 
 .navbar-light .navbar-brand {
