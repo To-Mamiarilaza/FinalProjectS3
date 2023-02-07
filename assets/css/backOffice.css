@@ -24,4 +24,15 @@ hr:not([size]) {
 
 .creation {
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icone {
+    float: right;
+}
+
+.categorie-list .row {
+    align-items: center;
 }
