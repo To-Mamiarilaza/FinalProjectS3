@@ -7,10 +7,12 @@
         <div class="list-group">
             <h4>Listes des categories</h4>
 
-            <a href="#" class="list-group-item list-group-item-action bg-dark creation">Nouveau categorie </a>
-            <a href="#" class="list-group-item list-group-item-action">Livre</a>
-            <a href="#" class="list-group-item list-group-item-action">Cuisine</a>
-            <a href="#" class="list-group-item list-group-item-action">Bricolage</a>
+            <ul class="list-group">
+                <a href="#" class="list-group-item bg-dark creation">Nouveau categorie </a>
+                <li class="list-group-item">Livre <a href=""><i class="fas fa-trash icone" ></i></a></li>
+                <li class="list-group-item">Cuisine <a href=""><i class="fas fa-trash icone" ></i></a></li>
+                <li class="list-group-item">Bricolage <a href=""><i class="fas fa-trash icone" ></i></a></li>
+            </ul>
         </div>
         </div>
     </div>

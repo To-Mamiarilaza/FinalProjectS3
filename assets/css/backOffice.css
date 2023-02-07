@@ -25,3 +25,7 @@ hr:not([size]) {
 .creation {
     color: white;
 }
+
+.icone {
+    float: right;
+}
