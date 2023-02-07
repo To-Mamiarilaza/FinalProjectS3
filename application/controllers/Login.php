@@ -75,7 +75,7 @@ class Login extends CI_Controller {
 		}
 		else {
 			$this->session->set_userdata('adminId', $test);
-			redirect("./accueil/index");
+			redirect("./backOffice/index");
 		}
 	}
 
