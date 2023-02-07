@@ -34,6 +34,11 @@ class Login extends CI_Controller {
 		$this->load->view('loginAdmin');
 	}
 
+	public function inscription()		// Charge la page inscription
+	{
+		$this->load->view('signup');
+	}
+
 	public function checkLoginUser()		// Verifie le mot de passe de l'user
 	{
 		$this->load->model('login_model');
@@ -74,6 +79,7 @@ class Login extends CI_Controller {
 		}
 	}
 
+	// Les fonctions  de deconnexion
 	public function deconnectClient()
 	{
 		$this->session->unset_userdata('userId');

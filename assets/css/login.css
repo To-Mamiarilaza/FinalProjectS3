@@ -51,6 +51,10 @@ body {
     color: rgb(110, 201, 110, 0.72);
 }
 
+.choix a {
+    text-decoration: none;
+}
+
 .champs input {
     padding-left: 35px;
     border-radius: 20px;
@@ -97,5 +101,5 @@ body {
 
 .client-connexion {
     text-decoration: none;
-    
+    font-size: 12px;
 }

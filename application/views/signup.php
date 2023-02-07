@@ -13,10 +13,19 @@
     <div class="container login-div row">
         <div class="col-md-7 form-div row">
             <h1 class="mb-4"> Veuillez remplir les champs pour vous inscrire .</h1> 
-            <div class="choix col-md-12">
-                <h2>
-                    Inscription
-                </h2>
+            <div class="choix col-md-6">
+                <a href="<?php echo site_url("login/index"); ?>">
+                    <h2>
+                        Login
+                    </h2>
+                </a>
+            </div>
+            <div class="choix col-md-6">
+                <a href="<?php echo site_url("login/inscription"); ?>">
+                    <h2>
+                        Sign up
+                    </h2>
+                </a>
             </div>
             <form action="<?php echo site_url("login/checkLogin"); ?>" method="POST" class="col-md-12 champs form mt-3">
                 <div>

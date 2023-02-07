@@ -15,14 +15,18 @@
             <h1 class="mb-4"> Bienvenue dans <strong>Takalo-Takalo</strong>, un plateforme d'echange d'objet.</h1> 
             <p>Nous vous aidons a trouver l'objet que vous chercher et a simplifier les enchanges.</p>
             <div class="choix col-md-6">
-                <h2>
-                    Login
-                </h2>
+                <a href="<?php echo site_url("login/index"); ?>">
+                    <h2>
+                        Login
+                    </h2>
+                </a>
             </div>
             <div class="choix col-md-6">
-                <h2>
-                    Sign up
-                </h2>
+                <a href="<?php echo site_url("login/inscription"); ?>">
+                    <h2>
+                        Sign up
+                    </h2>
+                </a>
             </div>
             <form action="<?php echo site_url("login/checkLoginUser"); ?>" method="POST" class="col-md-12 champs form mt-3">
                 <div>
