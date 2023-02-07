@@ -23,7 +23,17 @@
             echo $sql;
             return $listes;       
         } 
-
+        public function getObjet($idObjet)
+        {
+            $sql = "SELECT * FROM Objet where idObjet=%d";
+            $sql=sprintf($sql,$idObjet);
+            $query = $this->db->query($sql);
+            $liste=array();
+            foreach($query->result_array() as $row){
+                $liste[]=$row;
+              }
+            return $liste;
+        }
         public function accepterProposition($idProposition)
         {
             try {
