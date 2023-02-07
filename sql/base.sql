@@ -37,14 +37,16 @@ create table Objet(
     idUser int,
     nom VARCHAR(20),
     description VARCHAR(200),
-    prix double precision,
     foreign key(idCategorie) references Categorie(idCategorie),
     foreign key(idUser) references User(idUser)
 );
 
-insert into Objet values(null,2,1,"pencil","couleur bleu et  moins couteux",10000);
-insert into Objet values(null,1,2,"papier","couleur blanc et  moins couteux",1000);
-insert into Objet values(null,3,3,"pinceaux","couleur rouge et  moins couteux",5000);
+insert into Objet values(null,2,1,"pencil","couleur bleu et  moins couteux");
+insert into Objet values(null,1,2,"papier","couleur blanc et  moins couteux");
+insert into Objet values(null,3,3,"pinceaux","couleur rouge et  moins couteux");
+insert into Objet values(null,1,1,"Livre","Je termine le livre et je veux echanger");
+insert into Objet values(null,3,2,"Brochure","J'\aime bien");
+
 
 create table Photo(
     idPhoto int primary key AUTO_INCREMENT,

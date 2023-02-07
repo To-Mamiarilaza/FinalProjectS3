@@ -22,3 +22,11 @@
 .listes a {
     text-decoration: none;
 }
+
+.listes div {
+    height: 300px;
+}
+
+.listes div p {
+    font-size: 14px;
+}
