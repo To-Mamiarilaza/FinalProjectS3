@@ -26,7 +26,7 @@
             </div>
             <form action="<?php echo site_url("login/checkLoginUser"); ?>" method="POST" class="col-md-12 champs form mt-3">
                 <div>
-                    <i class="fas fa-user"></i><input type="text" name="mail" class="form-control" placeholder="Entrer votre username" value="<?php if (isset($nom)) echo $nom; ?>">
+                    <i class="fas fa-user"></i><input type="email" name="mail" class="form-control" placeholder="Entrer votre username" value="<?php if (isset($nom)) echo $nom; ?>">
                 </div>
                 <div class="mt-3">
                     <i class="fas fa-lock"></i><input type="password" name="mdp" class="form-control" placeholder="Entrer votre mot de passe" value="rakoto">
