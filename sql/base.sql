@@ -63,7 +63,9 @@ create table Echange(
     idObjetEchange int,
     EtatEchange int,
     foreign key(idObjetDemande) references Objet(idObjet),
-    foreign key(idObjetEchange) references Objet(idObjet)
+    foreign key(idObjetEchange) references Objet(idObjet),
+    dateHeureDebut datetime,
+    dateHeureFin datetime
 );
 
 insert into Echange values(null,2,1,0);
