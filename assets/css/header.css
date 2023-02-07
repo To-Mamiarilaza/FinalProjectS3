@@ -1,0 +1,16 @@
+.menu {
+    padding: .5% 10%;
+}
+
+.green-style {
+    color: rgb(110, 201, 110, 0.72);
+}
+
+.navbar-light .navbar-brand {
+    color: #898989;
+}
+
+.lien-nav li {
+    width: 9vw;
+    font-size: 1vw;
+}

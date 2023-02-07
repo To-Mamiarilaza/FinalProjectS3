@@ -1,0 +1,26 @@
+.container {
+    padding: 40px 10px;
+    min-height: 580px;
+    width: 75%;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.projet {
+    margin: 15px 5px;
+    background-color: #e7ffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #ebebeb;
+}
+
+.listes {
+    text-align: center;
+}
+
+.listes>a {
+    text-decoration: none;
+}
