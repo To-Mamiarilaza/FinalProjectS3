@@ -24,17 +24,17 @@ class Login extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function index()
+	public function index()		// Charge la page login du client
 	{
 		$this->load->view('loginClient');
 	}		
 
-	public function loginAdmin()
+	public function loginAdmin()		// Charge la page login de l'admin
 	{
 		$this->load->view('loginAdmin');
 	}
 
-	public function checkLoginUser()
+	public function checkLoginUser()		// Verifie le mot de passe de l'user
 	{
 		$this->load->model('login_model');
 
@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 		}
 	}
 
-	public function checkLoginAdmin()
+	public function checkLoginAdmin()		// Verifie mot de passe Admin
 	{
 		$this->load->model('login_model');
 
@@ -69,8 +69,20 @@ class Login extends CI_Controller {
 			$this->load->view('loginAdmin', $data);
 		}
 		else {
-			$this->session->set_userdata('userId', $test);
+			$this->session->set_userdata('adminId', $test);
 			redirect("./accueil/index");
 		}
+	}
+
+	public function deconnectClient()
+	{
+		$this->session->unset_userdata('userId');
+		$this->load->view('loginClient');
+	}
+
+	public function deconnectAdmin()
+	{
+		$this->session->unset_userdata('adminId');
+		$this->load->view('loginAdmin');
 	}
 }
