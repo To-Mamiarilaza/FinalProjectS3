@@ -55,7 +55,7 @@ class Login extends CI_Controller {
 		}
 		else {
 			$this->session->set_userdata('userId', $test);
-			redirect("./accueil/index");
+			redirect("./mesObjets/index");
 		}
 	}
 

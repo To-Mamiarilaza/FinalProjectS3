@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MesObjets extends CI_Controller {
 
+    public function index()
+    {
+        $data['content'] = "mesObjets";
+        $data['header'] = "header";
+        $data['title'] = "Mes Objets";
+        
+        $this->load->view('template', $data);
+    }
+
     public function getUser($idUser)
     {
         $this->load->model('objets_model','objet');
