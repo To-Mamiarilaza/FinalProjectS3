@@ -44,6 +44,18 @@
             throw new Exception($th->getMessage());
            }
         }
+
+        public function getPropositionRecu($idRecepteur)
+        {
+           $sql="select idObjetDemande,idObjetEchange,idEnvoyeur from EchangeDetail where idRecepteur=%d";
+           $sql=sprintf($sql,$idRecepteur);
+           $query = $this->db->query($sql);
+           $liste=array();
+           foreach($query->result_array() as $row){
+            $liste[]=$row;
+          }
+          return $liste;
+        }
         public function accepterProposition($idProposition)
         {
             try {
