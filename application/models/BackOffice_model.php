@@ -2,16 +2,15 @@
     if (! defined('BASEPATH')) exit('No direct script access allowed');
     class BackOffice_model extends CI_Model 
     {
-        
+
         public function getAllCategories(){
             $sql = "SELECT * FROM categorie";
-            $query = $this->db->query($sql);
-            //echo $query;
-            //$row = $query->row_object();
-            $listes=array();
-            $listes= $query->result_array();
-            echo $sql;
-            return $listes;       
+            $query=$this->db->query($sql);
+            $liste=array();
+           foreach($query->result_array() as $row){
+             $liste[]=$row;
+           }
+            return $liste;
         } 
 
         public function insertNewCategorie ($new)
