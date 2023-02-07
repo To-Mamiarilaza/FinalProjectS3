@@ -5,8 +5,15 @@ class FrontOffice extends CI_Controller {
 
     public function recherher()
     {
-        $this->load->model('backOffice_model','back');
-		$this->back->recherche();
+        $this->load->model('frontOffice_model','front');
+		$this->front->recherche();
+
+        $nomObjet = $this->input->get('nom');
+        $idCategorie = $this->input->get('idCategorie');
+
+        $this->load->model('frontOffice_model','front');
+		$this->front->getSpecifiqueObjet($nomObjet,$idCategorie);
+
     }
 
     
@@ -19,7 +26,8 @@ class FrontOffice extends CI_Controller {
 
     public function historiser()
     {
-
+        $this->load->model('frontOffice_model','front');
+		$this->front->historique();
     }
     
 }
