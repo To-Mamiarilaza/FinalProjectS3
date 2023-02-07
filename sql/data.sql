@@ -12,3 +12,5 @@ CREATE TABLE  utilisateur (
 INSERT INTO utilisateur VALUES (null, 'rakoto', 'rakoto', 0);
 INSERT INTO utilisateur VALUES (null, 'rabe', 'rabe', 0);
 INSERT INTO utilisateur VALUES (null, 'deba', 'deba', 1);
+
+coucou
