@@ -12,6 +12,7 @@
             throw new Exception($e->getMessage());
            }
         }   
+        
         public function supprimerCategorie($idCategorie){
             try {
             $this->db->query("DELETE FROM categorie where idCategorie='$idCategorie'");

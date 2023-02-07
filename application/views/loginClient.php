@@ -12,8 +12,8 @@
 <body>
     <div class="container login-div row">
         <div class="col-md-7 form-div row">
-            <h1 class="mb-4"> Bienvenue dans <strong>NosProjet</strong>, une application de gestion de projet.</h1> 
-            <p>Nous vous aidons a simplifier la planification de vos Projet en equipe.</p>
+            <h1 class="mb-4"> Bienvenue dans <strong>Takalo-Takalo</strong>, un plateforme d'echange d'objet.</h1> 
+            <p>Nous vous aidons a trouver l'objet que vous chercher et a simplifier les enchanges.</p>
             <div class="choix col-md-6">
                 <h2>
                     Login
