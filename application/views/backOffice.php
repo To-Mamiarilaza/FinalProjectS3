@@ -14,7 +14,7 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                         <p>Nom du nouveau categorie </p>
-                        <form action="">
+                        <form action="" method="post">
                             <input type="text" name="nom" class="form-control">
                             <input type="button" value="Ajouter" class="btn btn-success mt-3">
                         </form>
@@ -26,33 +26,7 @@
                             Livre
                         </div>
                         <div class="col-md-2">
-                            <a href=""><i class="far fa-edit icone" ></i></a>
-                        </div>
-                        <div class="offset-md-1 col-md-1">
-                            <a href=""><i class="fas fa-trash icone" ></i></a>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Cuisine
-                        </div>
-                        <div class="col-md-2">
-                            <a href=""><i class="far fa-edit icone" ></i></a>
-                        </div>
-                        <div class="offset-md-1 col-md-1">
-                            <a href=""><i class="fas fa-trash icone" ></i></a>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Bricolage
-                        </div>
-                        <div class="col-md-2">
-                            <a href=""><i class="far fa-edit icone" ></i></a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateName(1, 'Livre')"><i class="far fa-edit icone" ></i></a>
                         </div>
                         <div class="offset-md-1 col-md-1">
                             <a href=""><i class="fas fa-trash icone" ></i></a>
@@ -60,7 +34,42 @@
                     </div>
                 </li>
             </ul>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <p>Modifier le nom du categorie</p>
+                        <form action="" method="post">
+                            <input type="hidden" name="idCategorie" value="" id="idCategorie">
+                            <input type="text" name="nom" class="form-control" value="" id='nomCategorie'>
+                            <input type="button" value="Ajouter" class="btn btn-success mt-3">
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
         </div>
         </div>
     </div>
 </div>
+
+<script>
+    function updateName(idCategorie, categorie) {
+        var inputNom = document.getElementById('nomCategorie');
+        inputNom.value = categorie;
+
+        var inputId = document.getElementById('idCategorie');
+        inputId.value = idCategorie;
+    }
+</script>
