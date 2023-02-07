@@ -68,4 +68,4 @@ create table Echange(
 
 insert into Echange values(null,2,1,0);
 insert into Echange values(null,3,2,1);
-insert into Echange values(null,3,1,-1);        ;
+insert into Echange values(null,3,1,-1);        
