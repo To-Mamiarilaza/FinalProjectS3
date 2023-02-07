@@ -19,7 +19,17 @@
             } catch (\Throwable $th) {
                 throw $th;
             }
-        }      
+        }  
+        public function modifierCategorie($idCategorie,$newCategorie)
+        {
+           $sql="update Categorie set nom= '%s' where idCategorie=%d";
+           $sql=sprintf($sql,$newCategorie,$idCategorie);
+           try {
+           $this->db->query($sql);
+           } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+           }
+        }    
     }
     
 
