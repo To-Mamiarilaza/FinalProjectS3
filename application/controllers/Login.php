@@ -79,6 +79,31 @@ class Login extends CI_Controller {
 		}
 	}
 
+	// Inscription nouveau client
+	public function insertNewClient()
+	{
+		$nom = $this->input->post('nom');
+		$prenom = $this->input->post('prenom');
+		$tel = $this->input->post('tel');
+		$mail = $this->input->post('mail');
+		$mdp = $this->input->post('mdp');
+
+		if ($mdp == "" || $prenom == "" || $tel == "" || $mail == "" || $mdp == "") {
+			$data['erreur'] = "Veillez remplir tous les champs";
+			$this->load->view('signup', $data);
+		}
+		else {
+			$this->load->model('login_model', 'model');
+			$this->model->insertNewUser($nom, $prenom, $mdp, $mail, $tel);
+	
+			$test = $this->model->checkLoginUser($mail, $mdp);
+	
+			$this->session->set_userdata('userId', $test);
+
+			redirect("./accueil/index");
+		}
+	}
+
 	// Les fonctions  de deconnexion
 	public function deconnectClient()
 	{

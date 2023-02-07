@@ -12,10 +12,10 @@ insert into Admin values(null,"oui","oui");
 
 create table User(
     idUser int primary key AUTO_INCREMENT,
-    nom VARCHAR(20),
-    prenom VARCHAR(20),
-    mdp VARCHAR(20),
-    mail VARCHAR(20),
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    mdp VARCHAR(50),
+    mail VARCHAR(50),
     tel VARCHAR(20)
 );
 insert into User values(null,"koto","koto","koto","koto@gmail.com","0341234520");
