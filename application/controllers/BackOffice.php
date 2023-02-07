@@ -64,7 +64,7 @@ class BackOffice extends CI_Controller {
         $this->load->model('backOffice_model','back');
     	$nombre=$this->back->getNumberEchange();
 
-
+//fghj
         $this->load->view("backOffice",$nombre);
     }
 
