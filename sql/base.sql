@@ -62,19 +62,19 @@ create table Echange(
     idObjetDemande int,
     idObjetEchange int,
     EtatEchange int,
-    foreign key(idObjetDemande) references Objet(idObjet),
-    foreign key(idObjetEchange) references Objet(idObjet),
     dateHeureDemande datetime,
     dateHeureAccepte datetime,
     idRecepteur int,
     idEnvoyeur int,
     foreign key(idRecepteur) references Objet(idUser),
-    foreign key(idEnvoyeur) references Objet(idUser)
+    foreign key(idEnvoyeur) references Objet(idUser),
+    foreign key(idObjetDemande) references Objet(idObjet),
+    foreign key(idObjetEchange) references Objet(idObjet)
 );
 
 insert into Echange values(null,2,1,0,"2020-12-23 12:23:00",null,1,3);
 insert into Echange values(null,3,2,1,"2020-11-12 11:23:00",null,4,1);
-insert into Echange values(null,3,1,-1,"2020-10-23 09:23:00",null,4,3);
+insert into Echange values(null,3,1,1,"2020-10-23 09:23:00",null,4,3);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,4);
 
 
