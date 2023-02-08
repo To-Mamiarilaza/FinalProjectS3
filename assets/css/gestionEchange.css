@@ -1,5 +1,5 @@
 .container {
-    width: 70%;
+    width: 90%;
     margin-top: 3%;
     min-height: 580px;
 }
@@ -7,4 +7,14 @@
 .container h1 {
     font-size: 30px;
     font-weight: 500;
+}
+
+.demande {
+    color: #64b2e9;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.demande a {
+    text-decoration: none;
 }

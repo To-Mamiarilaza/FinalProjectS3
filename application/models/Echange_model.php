@@ -56,76 +56,82 @@
            }
         }
 
+        public function preparePropositionDisplay($listes)
+        {
+            $this->load->model("objets_model","model");
+
+            $resultat = array();
+            for ($i=0; $i < count($listes); $i++) { 
+                $resultat[$i]['objetDemande'] = $this->model->getObjet($listes[$i]['idObjetDemande']);
+                $resultat[$i]['objetEchange'] = $this->model->getObjet($listes[$i]['idObjetEchange']);
+                $resultat[$i]['idEchange'] = $listes[$i]['idEchange'];
+            }
+            return $resultat;
+        }
+
         public function getPropositionRecu($idRecepteur)
         {
-           $sql="select idObjetDemande,idObjetEchange,idEnvoyeur from Echange where idRecepteur=%d";
-           $sql=sprintf($sql,$idRecepteur);
-           $query = $this->db->query($sql);
-           $liste=array();
-           foreach($query->result_array() as $row){
-            $liste[]=$row;
-          }
+            $this->load->model("Echange_model", "model");
+            $sql="select idEchange, idObjetDemande,idObjetEchange,idEnvoyeur from Echange where idRecepteur=%d and dateHeureAccepte is null and EtatEchange = 1";
+            $sql=sprintf($sql,$idRecepteur);
+            $query = $this->db->query($sql);
+            $listes=array();
+            foreach($query->result_array() as $row){
+                $listes[]=$row;
+            }
+            $listes = $this->model->preparePropositionDisplay($listes);
+            return $listes;
+        }
+
+        public function getPropositionEnvoyer($idEnvoyeur)
+        {
+            $sql="select idEchange, idObjetDemande,idObjetEchange,idEnvoyeur from Echange where idEnvoyeur=%d and dateHeureAccepte is null and EtatEchange = 1";
+            $sql=sprintf($sql,$idEnvoyeur);
+            $query = $this->db->query($sql);
+            $liste=array();
+            foreach($query->result_array() as $row){
+                $liste[]=$row;
+            }
+            $liste = $this->model->preparePropositionDisplay($liste);
           return $liste;
         }
+
+
         public function accepterProposition($idProposition)
-        {
-            try {
+        {   
+            // Transaction d'acceptation
             $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
             $sql=sprintf($sql,$this->db->escape($idProposition));
             $this->db->query($sql);
-            echo $this->db->affected_rows();
-            echo $sql;
-            } catch (Exception $e) {
-                throw new Exception($e->getMessage());
-            }
-            //we
-//hgjhj
-                $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
-                $sql=sprintf($sql,$this->db->escape($idProposition));
-                $this->db->query($sql);
-                echo $this->db->affected_rows();
-                echo $sql;
-           
-                $sql1="select idObjetDemande,idObjetEchange,idRecepteur,idEnvoyeur from Echange where idEchange=%d";
-                $sql1=sprintf($sql1,$idProposition);
-                $query = $this->db->query($sql1);
-                $liste=$query->result_array();
-                echo $sql1;
-               var_dump($liste);
-//dfghj
-                $sql2="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
-                $sql2=sprintf($sql2,$liste[0]['idEnvoyeur'],$liste[0]['idObjetDemande']);
-                $this->db->query($sql2);
-                echo $liste[0]['idObjetDemande'];
-                echo $this->db->affected_rows();
-                echo $sql2;
+        
+            $sql1="select idObjetDemande,idObjetEchange,idRecepteur,idEnvoyeur from Echange where idEchange=%d";
+            $sql1=sprintf($sql1,$idProposition);
+            $query = $this->db->query($sql1);
+            $liste=$query->result_array();
 
-                
-                $sql3="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
-                $sql3=sprintf($sql3,$liste[0]['idRecepteur'],$liste[0]['idObjetEchange']);
-                $this->db->query($sql3);
-                echo $this->db->affected_rows();
-                echo $sql3;
-                }
+            $sql2="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+            $sql2=sprintf($sql2,$liste[0]['idEnvoyeur'],$liste[0]['idObjetDemande']);
+            $this->db->query($sql2);
 
-                 catch (Exception $e) {
-                    throw new Exception($e->getMessage());
-                   }
-                }
+            
+            $sql3="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+            $sql3=sprintf($sql3,$liste[0]['idRecepteur'],$liste[0]['idObjetEchange']);
+            $this->db->query($sql3);
+        }
                 
 
         
         public function refuserProposition($idProposition)
         {
             try {
-                $sql="UPDATE echange SET EtatEchange=0  WHERE idEchange= %d";
-                $sql=sprintf($sql,$this->db->escape($idProposition));
+                $sql="UPDATE Echange SET EtatEchange=0  WHERE idEchange= %d";
+                $sql=sprintf($sql, $idProposition);
                 $this->db->query($sql);
                 echo $this->db->affected_rows();
                 echo $sql;
                 } catch (Exception $e) {
                     throw new Exception($e->getMessage());
-                   }
+                }
                    
         }
     }
