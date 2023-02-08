@@ -41,10 +41,10 @@
             return $listes;
         }
 
-        public function updateObjet ($idObjet,$idCategorie,$idUser,$nom,$description)
+        public function updateObjet ($idObjet,$idCategorie,$idUser,$nom,$description,$prix)
         {
-            $sql="update Objet set idCategorie=%d , idUser=%d ,nom='%s',description='%s' where idObjet=%d";
-            $sql=sprintf($sql,$idCategorie,$idUser,$nom,$this->db->escape_str($description),$idObjet);
+            $sql="update Objet set idCategorie=%d , idUser=%d ,nom='%s',description='%s',prix=%d where idObjet=%d";
+            $sql=sprintf($sql,$idCategorie,$idUser,$nom,$this->db->escape_str($description),$prix,$idObjet);
             try {
                $this->db->query($sql);
             } catch (Exception $th) {

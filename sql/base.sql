@@ -44,9 +44,10 @@ create table Objet(
 
 insert into Objet values(null,2,1,"pencil","couleur bleu et  moins couteux",10000);
 insert into Objet values(null,1,2,"papier","couleur blanc et  moins couteux",100);
+insert into Objet values(null,1,3,"papier_velu","couleur blanc et  moins couteux",1000);
 insert into Objet values(null,3,3,"pinceaux","couleur rouge et  moins couteux",2000);
-insert into Objet values(null,1,1,"Livre","Je termine le livre et je veux echanger",);
-insert into Objet values(null,3,2,"Brochure","J'\aime bien");
+insert into Objet values(null,1,1,"Livre","Je termine le livre et je veux echanger",4000);
+insert into Objet values(null,3,2,"Brochure","J'\aime bien",5000);
 
 
 create table Photo(

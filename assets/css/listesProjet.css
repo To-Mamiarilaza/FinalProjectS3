@@ -40,3 +40,12 @@
     display: flex;
     justify-content: center;
 }
+.recherche{
+    background-color: rgb(125, 255, 125);
+    border-color: rgb(134, 247, 134);
+    height: 100px;
+    width: 100px;
+}
+.result{
+    display: inline;
+}

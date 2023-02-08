@@ -3,16 +3,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class FrontOffice extends CI_Controller {
 
-    public function recherher()
+    public function recherche()
     {
+        $idUser=$_SESSION['userId'];
+        //echo $idUser->idUser;
+       $nomObjet=$this->input->get('nom');
+       $idCategorie=$this->input->get('categorie');
         $this->load->model('frontOffice_model','front');
-		$this->front->recherche();
-
-        $nomObjet = $this->input->get('nom');
-        $idCategorie = $this->input->get('idCategorie');
-
-        $this->load->model('frontOffice_model','front');
-		$this->front->getSpecifiqueObjet($nomObjet,$idCategorie);
+        $this->load->model("objets_model", "modelObjet");
+        $arrayPhotos = array();
+	    $liste=$this->front->getSpecifiqueObjet($nomObjet,$idCategorie,$idUser->idUser);
+        for ($i=0; $i < count($liste); $i++) { 
+            $listesPhotos = $this->modelObjet->getPhoto($liste[$i]['idObjet']);
+            if(count($listesPhotos) != 0) $arrayPhotos[] = $listesPhotos[0]['photo'];
+            else $arrayPhotos[] = "default.jpg";
+        }
+        $data['arrayPhotos'] = $arrayPhotos;
+        $data['liste']=$liste;
+        $this->load->view('rencontreObjet',$data);
 
     }
 

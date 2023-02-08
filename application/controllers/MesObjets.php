@@ -9,11 +9,6 @@ class MesObjets extends CI_Controller {
 	}
 
 
-    public function accepter($idEchange)
-    {
-        $this->load->model("echange_model", "model");
-        $this->model->accepterProposition(9);
-    }
     public function index()
     {
         $this->load->model("objets_model", 'model');
@@ -87,12 +82,13 @@ class MesObjets extends CI_Controller {
         $this->load->model("objets_model", "model");
 
         $nom = $this->input->post("nom");
+        $prix= $this->input->post("prix");
         $description = $this->input->post("description");
         $idCategorie = $this->input->post("idCategorie");
         $idObjet = $this->input->post("idObjet");
         $idUser = $this->input->post("idUser");
 
-        $this->model->updateObjet($idObjet, $idCategorie, $idUser, $nom,  $description);
+        $this->model->updateObjet($idObjet, $idCategorie, $idUser, $nom,  $description, $prix);
 
         redirect("./mesObjets/detailObjet/".$idObjet);
     }
@@ -109,6 +105,13 @@ class MesObjets extends CI_Controller {
     {
         $this->load->model('objets_model','obj');
 		$this->obj->supprimerObjet(3);
+    }
+
+    
+    public function accepter($idEchange)
+    {
+        $this->load->model("echange_model", "model");
+        $this->model->accepterProposition(9);
     }
 }
 

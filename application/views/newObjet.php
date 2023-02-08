@@ -10,7 +10,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Prix de l'objet</label>
-            <input type="text" name="prix" class="form-control" id="exampleFormControlInput1" placeholder="Entrer le prix ici">
+            <input type="number" name="prix" class="form-control" id="exampleFormControlInput1" placeholder="Entrer le prix ici">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Categorie</label>

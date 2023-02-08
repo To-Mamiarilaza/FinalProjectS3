@@ -4,7 +4,7 @@ class FrontOffice_model extends CI_Model
 {
     public function getSpecifiqueObjet($nom,$idCategorie,$idUser)
     {
-        $sql="select * from Objet where nom like '%".$nom."%' and idCategorie="."$idCategorie"." and idUser !="."$idUser";
+        $sql="select * from Objet where nom like '%".$nom."%' and idCategorie=".$idCategorie." and idUser !=".$idUser;
         $query=$this->db->query($sql);
         $liste=array();
         foreach($query->result_array() as $row){

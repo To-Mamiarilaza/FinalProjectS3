@@ -49,7 +49,15 @@ class Echange extends CI_Controller {
 
         $data['arrayPhoto'] = $arrayPhoto;
 
+
+        $this->load->model("backOffice_model","back");
+
+       $listes=$this->back->getAllCategories();
+        $data['categorie']=$listes;
+
+        //var_dump($listes);
         $this->load->view('template', $data);
+
     }		
 
     public function detailOtherObjet($idObjet)
