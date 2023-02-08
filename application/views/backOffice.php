@@ -1,3 +1,6 @@
+<?php
+
+?>
 <link rel="stylesheet" href="<?php echo base_url("assets/css/backOffice.css"); ?>">
 <div class="container">
     <h1>Bienvenue Admin</h1>
@@ -64,8 +67,8 @@
         </div>
     <div class="col-md-9">
            <div class="numberofall">
-            <p>Nombre d'utilisateur</p>
-            <p>Nombre d'echange</p>
+            <p>Nombre d'utilisateur: <?php echo $nombre1; ?></p>
+            <p>Nombre d'echange:<?php echo $nombre2; ?></p>
            </div>
     </div>
     </div>
