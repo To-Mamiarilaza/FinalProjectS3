@@ -30,7 +30,7 @@ class FrontOffice_model extends CI_Model
 
     public function historique($idObjet)
     {
-       $sql="select * from Echange where idObjetEchange=%d";
+       $sql="select * from Echange where idObjetDemande=%d";
        $sql=sprintf($sql,$idObjet);
        $query=$this->db->query($sql);
        $liste=array();
