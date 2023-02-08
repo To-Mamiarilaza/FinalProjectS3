@@ -6,7 +6,7 @@
         public function insertNewObjet ($idCategorie,$idUser,$nom,$description)
         {
             $sql="insert into Objet values(null,%d,%d,'%s','%s')";
-            $sql=sprintf($sql,$idCategorie,$idUser,$nom,$description);
+            $sql=sprintf($sql,$idCategorie,$idUser,$nom, $this->db->escape_str($description));
             try {
                 $this->db->query($sql);
             } catch (Exception $e) {
