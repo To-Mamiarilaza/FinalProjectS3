@@ -117,11 +117,7 @@ class MesObjets extends CI_Controller {
     }
 
     
-    public function accepter($idEchange)
-    {
-        $this->load->model("echange_model", "model");
-        $this->model->accepterProposition(9);
-    }
+    
 }
 
 ?>
