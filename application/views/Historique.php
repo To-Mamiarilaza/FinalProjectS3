@@ -7,11 +7,13 @@
             <th>Ancien proprietaire</th>
             <th>Date d'echange</th>
             <th>Nouveau proprietaire</th>
+            <?php for ($i=0; $i <count($histo) ; $i++) {  ?>
             <tr>
-                <td>koto</td>
-                <td>20-12-2023</td>
-                <td>jenny</td>
+                <td><?php echo $ancien[$i]; ?> </td>
+                <td><?php echo $histo[$i]['dateHeureDemande']; ?> - <?php echo $histo[$i]['dateHeureAccepte']; ?></td>
+                <td><?php echo $nouveau[$i]; ?></td>
             </tr>
+            <?php } ?>
         </table>
     </center>
     </div>
