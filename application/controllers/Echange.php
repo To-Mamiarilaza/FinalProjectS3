@@ -25,7 +25,7 @@ class Echange extends CI_Controller {
         if(! $this->session->has_userdata('userId')) redirect("login/index");
     }
 
-	public function index()		// Charge la page login du client
+	public function index()		
 	{
         $this->load->model("echange_model", "model");
         $this->load->model("objets_model", "modelObjet");
@@ -57,6 +57,8 @@ class Echange extends CI_Controller {
         $this->load->model("objets_model", 'model');
         $this->load->model("backOffice_model", "backoffice");
 
+        $idUser = $this->session->userdata("userId")->idUser;
+
         $objet = $this->model->getObjet($idObjet);
         $data['content'] = "detailOtherObjet";
         $data['header'] = "header";
@@ -65,7 +67,31 @@ class Echange extends CI_Controller {
         $data['proprietaire'] = $this->model->getUserOb($idObjet);
         $data['categorie'] = $this->backoffice->getCategorie($data['objet']['idCategorie'])['nom'];
         $data['photos'] = $this->model->getPhoto($objet['idObjet']);
+        $data['ownObjets'] = $this->model->getUserObjet($idUser);
 
+        $this->load->view("template", $data);
+    }
+
+    public function demanderEchange()
+    {
+        $this->load->model("echange_model");
+        $this->load->model("objets_model");
+
+        $idObjetDemande = $this->input->post("idObjetDemande");
+        $idObjetEchange = $this->input->post("idObjetEchange");
+        $idRecepteur = $this->objets_model->getUserOb($idObjetDemande)['idUser'];
+        $idEnvoyeur = $this->objets_model->getUserOb($idObjetEchange)['idUser'];
+
+        $this->echange_model->demanderEchange($idObjetDemande, $idObjetEchange, $idRecepteur, $idEnvoyeur);
+
+        redirect("echange/index");
+    }
+
+    public function gestionEchange()
+    {
+        $data['content'] = "gestionEchange";
+        $data['header'] = "header";
+        $data['title'] = "Gestion des echanges";
         $this->load->view("template", $data);
     }
 	

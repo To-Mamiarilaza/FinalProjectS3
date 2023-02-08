@@ -2,7 +2,6 @@
 <div class="container">
     <h1>Listes de tous mes objets</h1>
     <a href="<?php echo site_url('/mesObjets/newObjet'); ?>" class="btn btn-info my-5 ">Ajouter nouvelle objet</a>
-    <a href="<?php echo site_url('frontOffice/historiser/1');?>" class="btn btn-info my-5 ">envoyer<?php ?></a>
     <div class="row listes">
         <?php for ($i=0; $i < count($objets); $i++) { ?>
             <div class="col-md-3 my-3">

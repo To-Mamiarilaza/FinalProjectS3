@@ -20,6 +20,37 @@
                     <p><?php echo $objet['description']; ?></p>
                 </div>
             </div>
+            <a href="" class="btn btn-warning mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Proceder a l'echange</a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Formulaire d'echange</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="<?php echo site_url("echange/demanderEchange") ?>" method="POST">
+                        <div class="modal-body">
+                            <h4>Objet demande : <?php echo $objet['nom']; ?></h4>
+                            <div class="mt-3">
+                                <input type="hidden" name="idObjetDemande" value="<?php echo $objet['idObjet']; ?>"> 
+                                <label for="selectForm" class="form-label">Objet a echanger : </label>
+                                <select class="form-select" name="idObjetEchange" aria-label="Default select example" id="selectForm">
+                                    <?php foreach ($ownObjets as $obj) { ?>
+                                        <option value="<?php echo $obj['idObjet']; ?>"><?php echo $obj['nom']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Demander Echanges</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-6 photos">

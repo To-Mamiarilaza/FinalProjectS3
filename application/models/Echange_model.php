@@ -45,10 +45,10 @@
               }
             return $liste;
         }
-        public function demanderEchange($idObjetDemande,$idObjetEchange,$idRecepteur,$idReceveur)
+        public function demanderEchange($idObjetDemande,$idObjetEchange,$idRecepteur,$idEnvoyeur)
         {
-           $sql="insert into Echange values (null,%d,%d,0,now(),null,%d,%d)";
-           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange,$idRecepteur,$idReceveur);
+           $sql="insert into Echange values (null,%d,%d,1,now(),null,%d,%d)";
+           $sql=sprintf($sql,$idObjetDemande,$idObjetEchange,$idRecepteur,$idEnvoyeur);
            try {
             $this->db->query($sql);
            } catch (Exception $th) {
@@ -70,14 +70,14 @@
         public function accepterProposition($idProposition)
         {
             try {
-                $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
-                $sql=sprintf($sql,$this->db->escape($idProposition));
-                $this->db->query($sql);
-                echo $this->db->affected_rows();
-                echo $sql;
-                } catch (Exception $e) {
-                    throw new Exception($e->getMessage());
-                   }
+            $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
+            $sql=sprintf($sql,$this->db->escape($idProposition));
+            $this->db->query($sql);
+            echo $this->db->affected_rows();
+            echo $sql;
+            } catch (Exception $e) {
+                throw new Exception($e->getMessage());
+            }
 
                 
         }

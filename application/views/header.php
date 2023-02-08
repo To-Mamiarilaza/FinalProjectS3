@@ -14,7 +14,7 @@
           <a class="nav-link" href="<?php echo site_url("echange/index"); ?>">Voir des objets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Listes Projet</a>
+          <a class="nav-link" href="<?php echo site_url("echange/gestionEchange"); ?>">Echanges</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?php echo site_url("login/deconnectClient"); ?>">Deconnecter</a>
