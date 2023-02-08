@@ -56,6 +56,12 @@ class MesObjets extends CI_Controller {
         $this->model->insertNewObjet($idCategorie, $idUser, $nom, $description);
         redirect('./mesObjets/index');
     }
+
+    public function supprObjet($idObjet)
+    {
+        $this->load->model('objets_model','obj');
+		$this->obj->supprimerObjet(3);
+    }
 }
 
 ?>

@@ -46,6 +46,22 @@ class BackOffice extends CI_Controller {
 
         redirect('./backOffice/index');
     }
+
+
+    public function getNumberUser()
+    {
+        
+        $this->load->model('backOffice_model','back');
+		$this->back->getNumberUser();
+    }
+  
+    public function getNumberEchange()
+    {
+        $this->load->model('backOffice_model','back');
+		$this->back->getNumberEchange();
+    }
+
+
 }
 
 ?>
