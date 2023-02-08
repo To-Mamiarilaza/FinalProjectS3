@@ -13,6 +13,18 @@ class FrontOffice_model extends CI_Model
         return $liste;
         
     }
+
+    public function historique($idObjet)
+    {
+       $sql="select * from Echange where idObjetEchange=%d";
+       $sql=sprintf($sql,$idObjet);
+       $query=$this->db->query($sql);
+       $liste=array();
+       foreach($query->result_array() as $row){
+        $liste[]=$row;
+       }
+       return $liste;
+    }
 }
 
 ?>
