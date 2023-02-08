@@ -50,26 +50,7 @@ class BackOffice extends CI_Controller {
     }
 
 
-    public function getNumberUser()
-    {
-        
-        $this->load->model('backOffice_model','back');
-		$nombre1=$this->back->getNumberUser();
-
-        $this->load->view("backOffice",$nombre1);
-
-    }
-  
-    public function getNumberEchange()
-    {
-
-        $this->load->model('backOffice_model','back');
-    	$nombre2=$this->back->getNumberEchange();
-
-
-        $this->load->view("backOffice",$nombre2);
-    }
-
+   
 
 }
 
