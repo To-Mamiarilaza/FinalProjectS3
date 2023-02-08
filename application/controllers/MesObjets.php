@@ -3,41 +3,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MesObjets extends CI_Controller {
 
-    public function getUser($idUser)
+    public function index()
     {
-        $this->load->model('objets_model','objet');
-		$this->objet->getUserObjet(2);
+        $this->load->model("objets_model", 'model');
+
+        $data['content'] = "mesObjets";
+        $data['header'] = "header";
+        $data['title'] = "Mes Objets";
+
+        $data['objets'] = $this->model->getUserObjet($this->session->userdata('userId')->idUser);
+
+        $this->load->view('template', $data);
     }
 
-    public function supprimerCat($idCat)
+    public function detailObjet($idObjet) 
     {
-        $this->load->model('objets_model','objet');
-		$this->objet->supprimerObjet(2);
+        $this->load->model("objets_model", 'model');
+        $this->load->model("backOffice_model", "backoffice");
+
+        $data['content'] = "detailObjet";
+        $data['header'] = "header";
+        $data['title'] = "Detail de l'objet";
+        $data['categories'] = $this->backoffice->getAllCategories();
+        
+        $data['proprietaire'] = $this->model->
+        $data['objet'] = $this->model->getObjet($idObjet);
+
+        $this->load->view('template', $data);
     }
 
-
-    public function getAllObj()
+    public function newObjet()
     {
-        $this->load->model('echange_model','objet');
-		$this->objet->getAllObjet();
+        $this->load->model('backOffice_model', 'model');
+
+        $data['content'] = "newObjet";
+        $data['header'] = "header";
+        $data['title'] = "Nouveau Objet";
+        $data['categories'] = $this->model->getAllCategories();
+
+        $this->load->view('template', $data);
     }
 
-    public function getUserObj($idUser)
+    public function insertNewObjet()
     {
-        $this->load->model('echange_model','objet');
-		$this->objet->getUserObjet(3);
-    }
+        $this->load->model('objets_model', 'model');
 
-    public function accepter($idProp)
-    {
-        $this->load->model('echange_model','objet');
-		$this->objet->accepterProposition(8);
-    }
+        $nom = $this->input->post('nom');
+        $idCategorie = $this->input->post('idCategorie');
+        $description = $this->input->post('description');
+        $idUser = $this->session->userdata('userId')->idUser;
 
-    public function refuser($idProp)
-    {
-        $this->load->model('echange_model','objet');
-		$this->objet->refuserProposition(6);
+        $this->model->insertNewObjet($idCategorie, $idUser, $nom, $description);
+        redirect('./mesObjets/index');
     }
 }
 

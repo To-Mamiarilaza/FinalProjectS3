@@ -50,12 +50,11 @@
                         <form action="<?php echo site_url('backOffice/updateCategorie'); ?>" method="post">
                             <input type="hidden" name="idCategorie" value="" id="idCategorie">
                             <input type="text" name="nom" class="form-control" value="" id='nomCategorie'>
-                            <input type="button" value="Ajouter" class="btn btn-success mt-3">
+                            <input type="submit" value="Ajouter" class="btn btn-success mt-3">
                         </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
                 </div>
             </div>

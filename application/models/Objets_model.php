@@ -3,26 +3,44 @@
 
     class Objets_model extends CI_Model { 
         
-        public function insertNewObjet ($idCategorie,$idUser,$nom,$description,$prix)
+        public function insertNewObjet ($idCategorie,$idUser,$nom,$description)
         {
-            $sql="insert into Objet values(null,%d,%d,'%s','%s',%d)";
-            $sql=sprintf($sql,$idCategorie,$idUser,$nom,$description,$prix);
+            $sql="insert into Objet values(null,%d,%d,'%s','%s')";
+            $sql=sprintf($sql,$idCategorie,$idUser,$nom, $this->db->escape_str($description));
             try {
                 $this->db->query($sql);
             } catch (Exception $e) {
                throw new Exception($e->getMessage());
             }
         }
-        public function getUserObjet($idUser){
-            $sql = "SELECT * FROM objet  where idUser='$idUser'";
+
+        public function getObjet($idObjet)
+        {
+            $sql = "SELECT * FROM Objet  where idObjet=%d";
+            $sql = sprintf($sql, $idObjet);
+
             $query = $this->db->query($sql);
-            //echo $query;
-            //$row = $query->row_object();
+
+            $objet = $query->row_array();
+
+            return $objet;
+        }
+        
+        public function getUserObjet($idUser){
+            $sql = "SELECT * FROM Objet  where idUser='$idUser'";
+            $query = $this->db->query($sql);
+            
             $listes=array();
-            $listes= $query->result_array();
-            echo $sql;
-            return $listes;       
-        } 
+
+            if($query !== FALSE && $query->num_rows() > 0){
+                foreach ($query->result_array() as $row) {
+                    $listes[] = $row;
+                }
+            }
+
+            return $listes;
+        }
+
         public function updateObjet ($idObjet,$idCategorie,$idUser,$nom,$description,$prix)
         {
             $sql="update Objet set idCategorie=%d , idUser=%d ,nom='%s',description='%s',prix=%d where idObjet=%d";
@@ -41,6 +59,7 @@
            $liste=$query->row_array();
            return $liste;                                                                                       
         }
+
         public function supprimerObjet($idObjet)
         {
             try {
