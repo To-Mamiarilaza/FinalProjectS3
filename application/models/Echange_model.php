@@ -78,9 +78,41 @@
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
+            //we
+//hgjhj
+                $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
+                $sql=sprintf($sql,$this->db->escape($idProposition));
+                $this->db->query($sql);
+                echo $this->db->affected_rows();
+                echo $sql;
+           
+                $sql1="select idObjetDemande,idObjetEchange,idRecepteur,idEnvoyeur from Echange where idEchange=%d";
+                $sql1=sprintf($sql1,$idProposition);
+                $query = $this->db->query($sql1);
+                $liste=$query->result_array();
+                echo $sql1;
+               var_dump($liste);
+//dfghj
+                $sql2="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+                $sql2=sprintf($sql2,$liste[0]['idEnvoyeur'],$liste[0]['idObjetDemande']);
+                $this->db->query($sql2);
+                echo $liste[0]['idObjetDemande'];
+                echo $this->db->affected_rows();
+                echo $sql2;
 
                 
-        }
+                $sql3="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+                $sql3=sprintf($sql3,$liste[0]['idRecepteur'],$liste[0]['idObjetEchange']);
+                $this->db->query($sql3);
+                echo $this->db->affected_rows();
+                echo $sql3;
+                }
+
+                 catch (Exception $e) {
+                    throw new Exception($e->getMessage());
+                   }
+                }
+                
 
         
         public function refuserProposition($idProposition)

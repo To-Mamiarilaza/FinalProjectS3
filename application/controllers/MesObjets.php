@@ -8,6 +8,12 @@ class MesObjets extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 	}
 
+
+    public function accepter($idEchange)
+    {
+        $this->load->model("echange_model", "model");
+        $this->model->accepterProposition(9);
+    }
     public function index()
     {
         $this->load->model("objets_model", 'model');
