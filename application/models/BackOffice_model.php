@@ -37,7 +37,23 @@
            } catch (Exception $e) {
             throw $e;
            }
-        }    
+        }
+        
+        public function getNumberUser()
+        {
+           $sql="select count(*) from User";
+           $query=$this->db->query($sql);
+           $row=$query->row_array();
+           return $row['count(*)'];
+        }
+
+        public function getNumberEchange()
+        {
+           $sql="select count(*) from Echange";
+           $query=$this->db->query($sql);
+           $row=$query->row_array();
+           return $row['count(*)'];
+        }
     }
     
 
