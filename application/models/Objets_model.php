@@ -13,6 +13,18 @@
                throw new Exception($e->getMessage());
             }
         }
+
+        public function getObjet($idObjet)
+        {
+            $sql = "SELECT * FROM Objet  where idObjet=%d";
+            $sql = sprintf($sql, $idObjet);
+
+            $query = $this->db->query($sql);
+
+            $objet = $query->row_array();
+
+            return $objet;
+        }
         
         public function getUserObjet($idUser){
             $sql = "SELECT * FROM Objet  where idUser='$idUser'";
