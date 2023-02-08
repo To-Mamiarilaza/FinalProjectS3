@@ -24,9 +24,10 @@ class FrontOffice extends CI_Controller {
 
     }
 
-    public function historiser()
+    public function historiser($idObjet)
     {
-        $idObjet=$this->input->get('idobjet');
+       
+      
         $this->load->model('frontOffice_model','front');
 		//$this->front->getNomUser($this->session->userdata("userid"));
 		$histo=$this->front->historique($idObjet);
@@ -36,11 +37,11 @@ class FrontOffice extends CI_Controller {
             $ancien[]=$this->front->getNomUser($histo[$i]['idEnvoyeur']);
             $nouveau[]=$this->front->getNomUser($histo[$i]['idRecepteur']);
         }
-        var_dump($histo);
+       
         $data['histo']=$histo;
         $data['ancien']=$ancien;
         $data['nouveau']=$nouveau;
-      //  $this->load->view('historique',$data);
+      $this->load->view('historique',$data);
 
     }
     public function voirplus()
