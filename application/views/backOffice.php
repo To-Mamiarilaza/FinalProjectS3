@@ -63,7 +63,10 @@
         </div>
         </div>
     <div class="col-md-9">
-           <div class=></div>
+           <div class="numberofall">
+            <p>Nombre d'utilisateur</p>
+            <p>Nombre d'echange</p>
+           </div>
     </div>
     </div>
 </div>
