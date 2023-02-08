@@ -64,8 +64,9 @@
         public function supprimerObjet($idObjet)
         {
             try {
+                $this->db->query("DELETE FROM Photo where idObjet='$idObjet'");
+                $this->db->query("DELETE FROM Echange where idObjetDemande='$idObjet' or idObjetEchange='$idObjet'");
                 $this->db->query("DELETE FROM Objet where idObjet='$idObjet'");
-                $this->db->query("DELETE photo FROM photo where idObjet='$idObjet'");
                 } catch (\Throwable $th) {
                     throw $th;
                 }
