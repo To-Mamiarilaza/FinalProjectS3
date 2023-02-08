@@ -3,10 +3,10 @@
 
     class Objets_model extends CI_Model { 
         
-        public function insertNewObjet ($idCategorie,$idUser,$nom,$description)
+        public function insertNewObjet ($idCategorie,$idUser,$nom,$description,$prix)
         {
-            $sql="insert into Objet values(null,%d,%d,'%s','%s')";
-            $sql=sprintf($sql,$idCategorie,$idUser,$nom, $this->db->escape_str($description));
+            $sql="insert into Objet values(null,%d,%d,'%s','%s',%d)";
+            $sql=sprintf($sql,$idCategorie,$idUser,$nom, $this->db->escape_str($description),$prix);
             try {
                 $this->db->query($sql);
             } catch (Exception $e) {
