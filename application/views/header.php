@@ -17,7 +17,7 @@
           <a class="nav-link" href="<?php echo site_url("echange/gestionEchange"); ?>">Echanges</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?php echo site_url("login/deconnectClient"); ?>">Deconnecter</a>
+          <a class="nav-link" href="<?php echo site_url("login/deconnectClient"); ?>">Deconnecter ( <?php echo $this->session->userdata['userId']->nom; ?> ) </a>
         </li>
       </ul>
     </div>

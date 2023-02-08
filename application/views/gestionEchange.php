@@ -11,13 +11,15 @@
                     <th>Objet echange</th>
                     <th>action</th>
                 </tr>
-                <tr>
-                    <td><a href="">Voiture</a></td>
-                    <td><a href="">Maison</a></td>
-                    <td>
-                        <a href="" class="btn btn-warning btn-sm">Annuler</a>
-                    </td>
-                </tr>
+                <?php foreach ($demandeEnvoyer as $demande) { ?>
+                    <tr>
+                            <td><a href=""><?php echo $demande['objetDemande'][0]['nom']; ?></a></td>
+                            <td><a href=""><?php echo $demande['objetEchange'][0]['nom']; ?></a></td>
+                            <td>
+                                <a href="<?php echo site_url("echange/annulerEchange/".$demande['idEchange']); ?>" class="btn btn-warning btn-sm">Annuler</a>
+                            </td>
+                        </tr>
+                <?php } ?>
             </table>
         </div>
         <div class="col-md-6 demande">
@@ -30,10 +32,10 @@
                     </tr>
                     <?php foreach ($demandeRecu as $demande) { ?>
                         <tr>
-                            <td><a href="">Voiture</a></td>
-                            <td><a href="">Maison</a></td>
+                            <td><a href=""><?php echo $demande['objetDemande'][0]['nom']; ?></a></td>
+                            <td><a href=""><?php echo $demande['objetEchange'][0]['nom']; ?></a></td>
                             <td>
-                                <a href="" class="btn btn-danger btn-sm mx-2">Refuser</a>
+                                <a href="<?php echo site_url("echange/annulerEchange/".$demande['idEchange']); ?>" class="btn btn-danger btn-sm mx-2">Refuser</a>
                                 <a href="" class="btn btn-success btn-sm mx-2">Accepter</a>
                             </td>
                         </tr>
