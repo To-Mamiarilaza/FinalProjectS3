@@ -36,10 +36,11 @@ class FrontOffice extends CI_Controller {
             $ancien[]=$this->front->getNomUser($histo[$i]['idEnvoyeur']);
             $nouveau[]=$this->front->getNomUser($histo[$i]['idRecepteur']);
         }
+        var_dump($histo);
         $data['histo']=$histo;
         $data['ancien']=$ancien;
         $data['nouveau']=$nouveau;
-        $this->load->view('historique',$data);
+      //  $this->load->view('historique',$data);
 
     }
     public function voirplus()
