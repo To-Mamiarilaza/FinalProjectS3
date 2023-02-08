@@ -107,5 +107,13 @@ class Echange extends CI_Controller {
 
         redirect("echange/gestionEchange");
     }
+
+    public function accepterEchange($idEchange)
+    {
+        $this->load->model("echange_model", "model");
+        $this->model->accepterProposition($idEchange);
+
+        redirect("echange/gestionEchange");
+    }
 	
 }

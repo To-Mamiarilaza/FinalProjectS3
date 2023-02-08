@@ -100,7 +100,7 @@
         public function accepterProposition($idProposition)
         {   
             // Transaction d'acceptation
-            $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
+            $sql="UPDATE Echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
             $sql=sprintf($sql,$this->db->escape($idProposition));
             $this->db->query($sql);
         
@@ -109,12 +109,12 @@
             $query = $this->db->query($sql1);
             $liste=$query->result_array();
 
-            $sql2="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+            $sql2="UPDATE Objet SET idUser=%d  WHERE idObjet= %d";
             $sql2=sprintf($sql2,$liste[0]['idEnvoyeur'],$liste[0]['idObjetDemande']);
             $this->db->query($sql2);
 
             
-            $sql3="UPDATE objet SET idUser=%d  WHERE idObjet= %d";
+            $sql3="UPDATE Objet SET idUser=%d  WHERE idObjet= %d";
             $sql3=sprintf($sql3,$liste[0]['idRecepteur'],$liste[0]['idObjetEchange']);
             $this->db->query($sql3);
         }
