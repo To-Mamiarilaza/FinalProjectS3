@@ -3,3 +3,44 @@
     margin-top: 3%;
     min-height: 580px;
 }
+
+.photos h4 {
+    text-align: center;
+    color: rgb(133, 221, 133);
+}
+
+.img-display img {
+    width: 100%;
+    height: 140px;
+}
+
+.album {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.photos h4 a {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.photos h4 i {
+    margin-left: 30px;
+    margin-right: 10px;
+}
+
+.ajoutPhoto .file {
+    display: none;
+}
+
+.ajoutPhoto label {
+    cursor: pointer;
+}
+
+.path {
+    display: inline;
+    margin-left: 50px;
+    color: rgb(96, 143, 143);
+    font-size: 13px;
+}

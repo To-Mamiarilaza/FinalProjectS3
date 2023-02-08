@@ -26,8 +26,9 @@ class MesObjets extends CI_Controller {
         $data['title'] = "Detail de l'objet";
         $data['categories'] = $this->backoffice->getAllCategories();
         
-        $data['proprietaire'] = $this->model->
-        $data['objet'] = $this->model->getObjet($idObjet);
+        $objet = $this->model->getObjet($idObjet);
+        $data['objet'] = $objet;
+        $data['proprietaire'] = $this->model->getUserOb($objet['idObjet']);
 
         $this->load->view('template', $data);
     }
@@ -55,6 +56,38 @@ class MesObjets extends CI_Controller {
 
         $this->model->insertNewObjet($idCategorie, $idUser, $nom, $description);
         redirect('./mesObjets/index');
+    }
+
+    public function updateObjet()
+    {
+        $this->load->model("objets_model", "model");
+
+        $nom = $this->input->post("nom");
+        $description = $this->input->post("description");
+        $idCategorie = $this->input->post("idCategorie");
+        $idObjet = $this->input->post("idObjet");
+        $idUser = $this->input->post("idUser");
+
+        $this->model->updateObjet($idObjet, $idCategorie, $idUser, $nom,  $description);
+
+        redirect("./mesObjets/detailObjet/".$idObjet);
+    }
+
+    public function deleteObjet($idObjet)
+    {
+        $this->load->model("objets_model", "model");
+        $this->model->supprimerObjet($idObjet);
+
+        redirect("./mesObjets/index");
+    }
+
+    public function ajoutPhoto()
+    {
+        $idObjet = $this->input->post("idObjet");
+
+        $this->load->model("objets_model", "model");
+
+        
     }
 }
 
