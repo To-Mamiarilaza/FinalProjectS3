@@ -2,36 +2,85 @@
     if (! defined('BASEPATH')) exit('No direct script access allowed');
 
     class Echange_model extends CI_Model {  
-        public function getUserObjet($idUser){
-            $sql = "SELECT * FROM Objet  where idUser='$idUser'";
-            $query = $this->db->query($sql);
-            //echo $query;
-            //$row = $query->row_object();
-            $listes=array();
-            $listes[]= $query->result_array();
-            echo $sql;
-            return $listes;       
-        } 
 
+        public function __construct()
+        {
+            parent::__construct();
+            $this->load->model("echange_model", "model");
+        }
+        
         public function getAllObjet(){
             $sql = "SELECT * FROM Objet";
             $query=$this->db->query($sql);
             $liste=array();
-           foreach($query->result_array() as $row){
-             $liste[]=$row;
-           }
+            foreach($query->result_array() as $row){
+                $liste[]=$row;
+            }
             return $liste;       
         } 
 
-        public function getOtherObjet($idUser){
-            $sql = "SELECT * FROM Objet WHERE idUser != %d";
-            $sql = sprintf($sql, $idUser);
+        public function getUserObjet($idUser)
+        {
+            $currentUser = array();
+            $resultat = array();
+
+            $objets = $this->model->getAllObjet();
+            foreach ($objets as $objet) {
+                $currentUser = $this->getCurrentProprietaire($objet['idObjet']);
+                if ($currentUser == $idUser) {
+                    $resultat[] = $objet;
+                }
+            }
+
+            return $resultat;       
+        } 
+
+
+        public function getCurrentProprietaire($idObjet)
+        {
+            $sql = "SELECT * FROM Echange WHERE dateHeureAccepte is not null and (idObjetDemande = %d or idObjetEchange = %d) order by idEchange desc limit 1";
+            $sql = sprintf($sql, $idObjet, $idObjet);
             $query=$this->db->query($sql);
-            $liste=array();
-           foreach($query->result_array() as $row){
-             $liste[]=$row;
-           }
-            return $liste;       
+            $resultat = $query->row_array();
+
+            if ($resultat == null) {
+                $objet = $this->model->getObjet($idObjet);
+                return $objet['idUser'];
+            }
+
+            if ($idObjet == $resultat['idObjetDemande']) {
+                return $resultat['idEnvoyeur'];
+            }
+            return $resultat['idRecepteur'];
+        }
+
+        public function getUser($idProprietaire)
+        {
+            $sql = "SELECT * from User WHERE idUser = %d";
+            $sql = sprintf($sql, $idProprietaire);
+            $query = $this->db->query($sql);
+
+            return $query->row_array();
+        }
+
+        public function getOtherObjet($idUser){
+            $userObjets = $this->model->getUserObjet($idUser);
+            $allObjets = $this->model->getAllObjet();
+            $resultat = array();
+
+            foreach ($allObjets as $allObjet) {
+                $test = true;
+                foreach ($userObjets as $userObjet) {
+                    if($userObjet['idObjet'] == $allObjet['idObjet']) {
+                        $test = false;
+                    }
+                }
+                if ($test == true) {
+                    $resultat[] = $allObjet;
+                }
+            }
+
+            return $resultat;
         } 
 
         public function getObjet($idObjet)
@@ -39,11 +88,8 @@
             $sql = "SELECT * FROM Objet where idObjet=%d";
             $sql=sprintf($sql,$idObjet);
             $query = $this->db->query($sql);
-            $liste=array();
-            foreach($query->result_array() as $row){
-                $liste[]=$row;
-              }
-            return $liste;
+            $resultat = $query->row_array();
+            return $resultat;
         }
         public function demanderEchange($idObjetDemande,$idObjetEchange,$idRecepteur,$idEnvoyeur)
         {
@@ -71,7 +117,6 @@
 
         public function getPropositionRecu($idRecepteur)
         {
-            $this->load->model("Echange_model", "model");
             $sql="select idEchange, idObjetDemande,idObjetEchange,idEnvoyeur from Echange where idRecepteur=%d and dateHeureAccepte is null and EtatEchange = 1";
             $sql=sprintf($sql,$idRecepteur);
             $query = $this->db->query($sql);
@@ -101,22 +146,9 @@
         {   
             // Transaction d'acceptation
             $sql="UPDATE Echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
-            $sql=sprintf($sql,$this->db->escape($idProposition));
+            $sql=sprintf($sql, $idProposition);
+            echo $sql;
             $this->db->query($sql);
-        
-            $sql1="select idObjetDemande,idObjetEchange,idRecepteur,idEnvoyeur from Echange where idEchange=%d";
-            $sql1=sprintf($sql1,$idProposition);
-            $query = $this->db->query($sql1);
-            $liste=$query->result_array();
-
-            $sql2="UPDATE Objet SET idUser=%d  WHERE idObjet= %d";
-            $sql2=sprintf($sql2,$liste[0]['idEnvoyeur'],$liste[0]['idObjetDemande']);
-            $this->db->query($sql2);
-
-            
-            $sql3="UPDATE Objet SET idUser=%d  WHERE idObjet= %d";
-            $sql3=sprintf($sql3,$liste[0]['idRecepteur'],$liste[0]['idObjetEchange']);
-            $this->db->query($sql3);
         }
                 
 
