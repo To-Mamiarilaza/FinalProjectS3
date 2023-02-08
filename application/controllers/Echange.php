@@ -56,21 +56,25 @@ class Echange extends CI_Controller {
 
     public function detailOtherObjet($idObjet)
     {
-        $this->load->model("objets_model", 'model');
+        $this->load->model("objets_model", 'objmodel');
+        $this->load->model("echange_model", 'emodel');
         $this->load->model("backOffice_model", "backoffice");
 
         $idUser = $this->session->userdata("userId")->idUser;
 
-        $objet = $this->model->getObjet($idObjet);
+        $objet = $this->objmodel->getObjet($idObjet);
         $data['content'] = "detailOtherObjet";
         $data['header'] = "header";
         $data['title'] = "Detail de l'objet";
         $data['objet'] = $objet;
-        $data['proprietaire'] = $this->model->getUserOb($idObjet);
+
+        $idProprietaire = $this->emodel->getCurrentProprietaire($idObjet);
+        $data['proprietaire'] = $this->emodel->getUser($idProprietaire);
+
         $categorie = $this->backoffice->getCategorie($data['objet']['idCategorie']);
         $data['categorie'] = $categorie['nom'];
-        $data['photos'] = $this->model->getPhoto($objet['idObjet']);
-        $data['ownObjets'] = $this->model->getUserObjet($idUser);
+        $data['photos'] = $this->objmodel->getPhoto($objet['idObjet']);
+        $data['ownObjets'] = $this->emodel->getUserObjet($idUser);
 
         $this->load->view("template", $data);
     }

@@ -43,6 +43,7 @@ class MesObjets extends CI_Controller {
     public function detailObjet($idObjet) 
     {
         $this->load->model("objets_model", 'model');
+        $this->load->model("echange_model", 'emodel');
         $this->load->model("backOffice_model", "backoffice");
 
         $data['content'] = "detailObjet";
@@ -52,7 +53,8 @@ class MesObjets extends CI_Controller {
         
         $objet = $this->model->getObjet($idObjet);
         $data['objet'] = $objet;
-        $data['proprietaire'] = $this->model->getUserOb($objet['idObjet']);
+        $idPropr = $this->emodel->getCurrentProprietaire($objet['idObjet']);
+        $data['proprietaire'] = $this->emodel->getUser($idPropr);
         $data['photos'] = $this->model->getPhoto($objet['idObjet']);
 
         $this->load->view('template', $data);
