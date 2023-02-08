@@ -89,6 +89,12 @@ class Echange extends CI_Controller {
 
     public function gestionEchange()
     {
+        $this->load->model("echange_model");
+        $idUser = $this->session->userdata("userId")->idUser;
+
+        $data['demandeRecu'] = $this->echange_model->getPropositionRecu($idUser);
+        $data['demandeEnvoyer'] = $this->echange_model->getPropositionEnvoyer($idUser);
+        
         $data['content'] = "gestionEchange";
         $data['header'] = "header";
         $data['title'] = "Gestion des echanges";
