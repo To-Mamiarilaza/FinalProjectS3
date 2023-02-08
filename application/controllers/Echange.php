@@ -65,7 +65,8 @@ class Echange extends CI_Controller {
         $data['title'] = "Detail de l'objet";
         $data['objet'] = $objet;
         $data['proprietaire'] = $this->model->getUserOb($idObjet);
-        $data['categorie'] = $this->backoffice->getCategorie($data['objet']['idCategorie'])['nom'];
+        $categorie = $this->backoffice->getCategorie($data['objet']['idCategorie']);
+        $data['categorie'] = null;
         $data['photos'] = $this->model->getPhoto($objet['idObjet']);
         $data['ownObjets'] = $this->model->getUserObjet($idUser);
 
