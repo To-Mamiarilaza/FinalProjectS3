@@ -3,7 +3,7 @@
 
     class Echange_model extends CI_Model {  
         public function getUserObjet($idUser){
-            $sql = "SELECT * FROM objet  where idUser='$idUser'";
+            $sql = "SELECT * FROM Objet  where idUser='$idUser'";
             $query = $this->db->query($sql);
             //echo $query;
             //$row = $query->row_object();
@@ -14,7 +14,7 @@
         } 
 
         public function getAllObjet(){
-            $sql = "SELECT * FROM objet";
+            $sql = "SELECT * FROM Objet";
             $query=$this->db->query($sql);
             $liste=array();
            foreach($query->result_array() as $row){
@@ -22,6 +22,18 @@
            }
             return $liste;       
         } 
+
+        public function getOtherObjet($idUser){
+            $sql = "SELECT * FROM Objet WHERE idUser != %d";
+            $sql = sprintf($sql, $idUser);
+            $query=$this->db->query($sql);
+            $liste=array();
+           foreach($query->result_array() as $row){
+             $liste[]=$row;
+           }
+            return $liste;       
+        } 
+
         public function getObjet($idObjet)
         {
             $sql = "SELECT * FROM Objet where idObjet=%d";

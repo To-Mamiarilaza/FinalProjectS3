@@ -21,11 +21,13 @@ class MesObjets extends CI_Controller {
 
         $arrayPhoto = array();
 
-        // for ($i=0; $i < ; $i++) { 
+        for ($i=0; $i < count($objets); $i++) { 
+            $listesPhotos = $this->model->getPhoto($objets[$i]['idObjet']);
+            if(count($listesPhotos) != 0) $arrayPhoto[] = $listesPhotos[0]['photo'];
+            else $arrayPhoto[] = "default.jpg";
+        }
 
-        // }
-
-        $data['photo'] = $photo;
+        $data['arrayPhoto'] = $arrayPhoto;
 
         $this->load->view('template', $data);
     }
@@ -43,7 +45,7 @@ class MesObjets extends CI_Controller {
         $objet = $this->model->getObjet($idObjet);
         $data['objet'] = $objet;
         $data['proprietaire'] = $this->model->getUserOb($objet['idObjet']);
-        $data['photos'] = $this->model->getAllPhoto();
+        $data['photos'] = $this->model->getPhoto($objet['idObjet']);
 
         $this->load->view('template', $data);
     }
