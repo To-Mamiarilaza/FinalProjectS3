@@ -49,6 +49,8 @@ class Echange extends CI_Controller {
 
         $data['arrayPhoto'] = $arrayPhoto;
 
+        
+
         $this->load->view('template', $data);
     }		
 
@@ -80,7 +82,7 @@ class Echange extends CI_Controller {
 
         $idObjetDemande = $this->input->post("idObjetDemande");
         $idObjetEchange = $this->input->post("idObjetEchange");
-        
+
         $recepteur = $this->objets_model->getUserOb($idObjetDemande);
         $envoyeur = $this->objets_model->getUserOb($idObjetEchange);
         $idRecepteur = $recepteur['idUser'];

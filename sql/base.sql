@@ -81,6 +81,9 @@ insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,4);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,1);
 insert into Echange values(null,1,3,0,"2020-09-23 08:23:00",null,3,1);
 
+insert into Echange values(null,1,3,1,"2020-09-23 08:23:00",now(), 2,1);
+
+
 
 
 select * from objet o join User u on o.idUser=u.idUser;

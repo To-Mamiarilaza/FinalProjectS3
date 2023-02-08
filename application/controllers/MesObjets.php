@@ -14,21 +14,23 @@ class MesObjets extends CI_Controller {
         $this->load->model("echange_model", "model");
         $this->model->accepterProposition(9);
     }
+    
     public function index()
     {
-        $this->load->model("objets_model", 'model');
+        $this->load->model("objets_model", 'objModel');
+        $this->load->model("echange_model", 'echange');
 
         $data['content'] = "mesObjets";
         $data['header'] = "header";
         $data['title'] = "Mes Objets";
 
-        $objets = $this->model->getUserObjet($this->session->userdata('userId')->idUser);;
+        $objets = $this->echange->getUserObjet($this->session->userdata('userId')->idUser);
         $data['objets'] = $objets;
 
         $arrayPhoto = array();
 
         for ($i=0; $i < count($objets); $i++) { 
-            $listesPhotos = $this->model->getPhoto($objets[$i]['idObjet']);
+            $listesPhotos = $this->objModel->getPhoto($objets[$i]['idObjet']);
             if(count($listesPhotos) != 0) $arrayPhoto[] = $listesPhotos[0]['photo'];
             else $arrayPhoto[] = "default.jpg";
         }
