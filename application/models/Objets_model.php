@@ -65,11 +65,11 @@
         {
             try {
                 $this->db->query("DELETE FROM Objet where idObjet='$idObjet'");
-    
+                $this->db->query("DELETE photo FROM photo where idObjet='$idObjet'");
                 } catch (\Throwable $th) {
                     throw $th;
                 }
-        }
+        }      
 
     // Traitement Photo
     function getAllPhoto() {

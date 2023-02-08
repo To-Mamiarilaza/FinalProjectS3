@@ -86,8 +86,12 @@ class MesObjets extends CI_Controller {
         $idObjet = $this->input->post("idObjet");
 
         $this->load->model("objets_model", "model");
-
+    }
         
+    public function supprObjet($idObjet)
+    {
+        $this->load->model('objets_model','obj');
+		$this->obj->supprimerObjet(3);
     }
 }
 
