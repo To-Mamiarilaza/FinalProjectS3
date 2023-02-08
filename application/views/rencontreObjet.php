@@ -1,12 +1,11 @@
 <link rel="stylesheet" href="<?php echo base_url("assets/css/listesProjet.css"); ?>">
 <div class="container">
-    <h1>Listes de tous mes objets</h1>
-    <a href="<?php echo site_url('/mesObjets/newObjet'); ?>" class="btn btn-info my-5 ">Ajouter nouvelle objet</a>
+    <h1>Listes de tous les objets a echanger </h1>
     <div class="row listes">
         <?php for ($i=0; $i < count($objets); $i++) { ?>
             <div class="col-md-3 my-3">
                 <div class="card" style="width: 18rem;">
-                    <a href="<?php echo site_url('mesObjets/detailObjet/'.$objets[$i]['idObjet']); ?>">
+                    <a href="<?php echo site_url('echange/detailOtherObjet/'.$objets[$i]['idObjet']); ?>">
                         <div class="image">
                             <img src="<?php echo base_url('assets/images/objet/'.$arrayPhoto[$i]); ?>" class="card-img-top" alt="...">
                         </div>
