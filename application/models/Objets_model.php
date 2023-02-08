@@ -34,7 +34,7 @@
             }
         }
         public function getUserOb($idObjet)
-        {
+        { //dpcklc,
            $sql="select u.idUser,u.nom,u.prenom,u.mail,u.tel from objet o join User u on o.idUser=u.idUser where  o.idObjet=%d";
            $sql=sprintf($sql,$idObjet);  
            $query=$this->db->query($sql);
