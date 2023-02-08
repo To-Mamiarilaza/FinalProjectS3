@@ -1,15 +1,10 @@
 create database takalo;
 use takalo;
-
 create table Admin(
     idAdmin int primary key AUTO_INCREMENT,
     nom VARCHAR(20),
     mdp VARCHAR(20)
 );
-insert into Admin values(null,"koto","koto");
-insert into Admin values(null,"jenny","jenny");
-insert into Admin values(null,"oui","oui");
-
 create table User(
     idUser int primary key AUTO_INCREMENT,
     nom VARCHAR(50),
@@ -18,19 +13,10 @@ create table User(
     mail VARCHAR(50),
     tel VARCHAR(20)
 );
-insert into User values(null,"koto","koto","koto","koto@gmail.com","0341234520");
-insert into User values(null,"jenny","jenny","jenny","jenny@gmail.com","0342345312");
-insert into User values(null,"oui","oui","oui","oui@gmail.com","0331234523");
-
 create table Categorie(
     idCategorie int primary key AUTO_INCREMENT,
     nom VARCHAR(20)
 );
-
-insert into Categorie values(null,"maquillage");
-insert into Categorie values(null,"fourniture_bureau");
-insert into Categorie values(null,"fourniture_maison");
-
 create table Objet(
     idObjet int primary key AUTO_INCREMENT,
     idCategorie int,
@@ -41,26 +27,12 @@ create table Objet(
     foreign key(idCategorie) references Categorie(idCategorie),
     foreign key(idUser) references User(idUser)
 );
-
-insert into Objet values(null,2,1,"pencil","couleur bleu et  moins couteux",10000);
-insert into Objet values(null,1,2,"papier","couleur blanc et  moins couteux",100);
-insert into Objet values(null,1,3,"papier_velu","couleur blanc et  moins couteux",1000);
-insert into Objet values(null,3,3,"pinceaux","couleur rouge et  moins couteux",2000);
-insert into Objet values(null,1,1,"Livre","Je termine le livre et je veux echanger",4000);
-insert into Objet values(null,3,2,"Brochure","J'\aime bien",5000);
-
-
 create table Photo(
     idPhoto int primary key AUTO_INCREMENT,
     idObjet int,
     photo VARCHAR(20),
     foreign key(idObjet) references Objet(idObjet)
 );
-
-insert into Photo values(null,2,"image1");
-insert into Photo values(null,3,"image2");
-insert into Photo values(null,1,"image3");
-
 create table Echange(
     idEchange int primary key AUTO_INCREMENT,
     idObjetDemande int,
@@ -81,10 +53,29 @@ insert into Echange values(null,3,1,1,"2020-10-23 09:23:00",null,4,3);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,4);
 insert into Echange values(null,4,1,0,"2020-09-23 08:23:00",null,3,1);
 insert into Echange values(null,1,3,0,"2020-09-23 08:23:00",null,3,1);
-
 insert into Echange values(null,1,3,1,"2020-09-23 08:23:00",now(), 2,1);
 
-
-
-
 select * from objet o join User u on o.idUser=u.idUser;
+
+insert into Admin values(null,"koto","koto");
+insert into Admin values(null,"jenny","jenny");
+insert into Admin values(null,"oui","oui");
+
+insert into User values(null,"koto","koto","koto","koto@gmail.com","0341234520");
+insert into User values(null,"jenny","jenny","jenny","jenny@gmail.com","0342345312");
+insert into User values(null,"oui","oui","oui","oui@gmail.com","0331234523");
+
+insert into Categorie values(null,"maquillage");
+insert into Categorie values(null,"fourniture_bureau");
+insert into Categorie values(null,"fourniture_maison");
+
+insert into Objet values(null,2,1,"pencil","couleur bleu et  moins couteux",10000);
+insert into Objet values(null,1,2,"papier","couleur blanc et  moins couteux",100);
+insert into Objet values(null,1,3,"papier_velu","couleur blanc et  moins couteux",1000);
+insert into Objet values(null,3,3,"pinceaux","couleur rouge et  moins couteux",2000);
+insert into Objet values(null,1,1,"Livre","Je termine le livre et je veux echanger",4000);
+insert into Objet values(null,3,2,"Brochure","J'\aime bien",5000);
+
+insert into Photo values(null,2,"image1");
+insert into Photo values(null,3,"image2");
+insert into Photo values(null,1,"image3");
