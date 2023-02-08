@@ -66,7 +66,7 @@ class Echange extends CI_Controller {
         $data['objet'] = $objet;
         $data['proprietaire'] = $this->model->getUserOb($idObjet);
         $categorie = $this->backoffice->getCategorie($data['objet']['idCategorie']);
-        $data['categorie'] = null;
+        $data['categorie'] = $categorie['nom'];
         $data['photos'] = $this->model->getPhoto($objet['idObjet']);
         $data['ownObjets'] = $this->model->getUserObjet($idUser);
 
@@ -80,8 +80,11 @@ class Echange extends CI_Controller {
 
         $idObjetDemande = $this->input->post("idObjetDemande");
         $idObjetEchange = $this->input->post("idObjetEchange");
-        $idRecepteur = $this->objets_model->getUserOb($idObjetDemande)['idUser'];
-        $idEnvoyeur = $this->objets_model->getUserOb($idObjetEchange)['idUser'];
+        
+        $recepteur = $this->objets_model->getUserOb($idObjetDemande);
+        $envoyeur = $this->objets_model->getUserOb($idObjetEchange);
+        $idRecepteur = $recepteur['idUser'];
+        $idEnvoyeur = $envoyeur['idUser'];
 
         $this->echange_model->demanderEchange($idObjetDemande, $idObjetEchange, $idRecepteur, $idEnvoyeur);
 
