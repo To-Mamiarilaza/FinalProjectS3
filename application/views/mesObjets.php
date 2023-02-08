@@ -7,7 +7,9 @@
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
                     <a href="<?php echo site_url('mesObjets/detailObjet/'.$objet['idObjet']); ?>">
-                        <img src="<?php echo base_url('assets/images/login-images.jpg'); ?>" class="card-img-top" alt="...">
+                        <div class="image">
+                            <img src="<?php echo base_url('assets/images/objet/'.$photo); ?>" class="card-img-top" alt="...">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $objet['nom']; ?></h5>
                             <p class="card-text"><?php echo $objet['description']; ?></p>
