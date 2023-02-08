@@ -78,8 +78,7 @@
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
             }
-            //we
-//hgjhj
+       
                 $sql="UPDATE echange SET dateHeureAccepte=NOW()  WHERE idEchange= %d";
                 $sql=sprintf($sql,$this->db->escape($idProposition));
                 $this->db->query($sql);
