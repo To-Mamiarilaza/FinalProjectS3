@@ -2,6 +2,18 @@
 <div class="container">
     <h1>Listes de tous mes objets</h1>
     <a href="<?php echo site_url('/mesObjets/newObjet'); ?>" class="btn btn-info my-5 ">Ajouter nouvelle objet</a>
+    <div class="">
+        <form action="" method="get">
+            <label for="">Mot cle</label>
+            <input type="text" name="nom">
+
+            <label for="">Categorie</label>
+            <select name="" id="">
+                <option value="">Tout</option>
+            </select>
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
     <div class="row listes">
         <?php foreach ($objets as $objet) { ?>
             <div class="col-md-3">
